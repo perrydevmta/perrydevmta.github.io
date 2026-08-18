@@ -16,21 +16,25 @@ document.addEventListener("DOMContentLoaded", () => {
     // 2. Dicionário de Traduções (PT / EN)
     const translations = {
         pt: {
-            "nav-home": "Início", "nav-about": "Sobre", "nav-projects": "Projetos", "nav-diff": "Diferenciais", "nav-faq": "FAQ", "nav-reviews": "Depoimentos", "nav-contact": "Contato",
+            "nav-home": "Início", "nav-about": "Sobre", "nav-projects": "Projetos", "nav-diff": "Diferenciais", "nav-calc": "Orçamento", "nav-faq": "FAQ", "nav-reviews": "Depoimentos", "nav-contact": "Contato",
             "hero-title": "Desenvolvendo o futuro do seu <span>Servidor MTA</span>",
             "hero-desc": "Especialista em scripts avançados, otimização extrema, painéis modernos e sistemas exclusivos como veículos elétricos.",
-            "btn-projects": "Ver Projetos", "btn-contact": "Fale Comigo",
+            "btn-projects": "Ver Projetos", "btn-budget": "Calcular Orçamento",
+            "partners-title": "Sistemas validados e aprovados por donos de grandes servidores:",
             "about-title": "Sobre Mim",
             "about-p1": "Olá! Sou o <strong>Perry</strong>, um desenvolvedor apaixonado por criar experiências únicas e imersivas no <strong>Multi Theft Auto (MTA)</strong>. O meu foco principal é desenvolver sistemas limpos, altamente otimizados (client/server) e com uma interface visual impecável (UI/UX).",
             "about-p2": "Seja criando mecânicas complexas, sistemas de tunagem detalhados ou inovações tecnológicas como carros elétricos para o seu servidor, trabalho focado em entregar estabilidade, zero lag e segurança total contra exploits.",
             "projects-title": "Meus Projetos",
             "projects-subtitle": "Clique num card para ver os detalhes completos e especificações",
-            "proj1-img": "Prévia do Sistema", "proj1-title": "Sistema de Carro Elétrico", "proj1-desc": "Mecânica avançada com HUD própria, carregamento de bateria, som personalizado e sincronização perfeita.",
-            "proj2-img": "Prévia do Sistema", "proj2-title": "Painel de Tunagem Pro", "proj2-desc": "Interface moderna em estilo cyberpunk para modificação estética e de performance de veículos com pré-visualização.",
-            "proj3-img": "Prévia do Sistema", "proj3-title": "Sistema de Criação de Conta", "proj3-desc": "Tela de registo e login fluida, segura, integrada com base de dados e proteção total contra injeções.",
+            "proj1-title": "Sistema de Carro Elétrico", "proj1-desc": "Mecânica avançada com HUD própria, carregamento de bateria, som personalizado e sincronização perfeita.",
+            "proj2-title": "Painel de Tunagem Pro", "proj2-desc": "Interface moderna em estilo cyberpunk para modificação estética e de performance de veículos com pré-visualização.",
+            "proj3-title": "Sistema de Criação de Conta", "proj3-desc": "Tela de registo e login fluida, segura, integrada com base de dados e proteção total contra injeções.",
             "tag-security": "Segurança", "tag-ui": "UI Moderna",
             "diff-title": "Por que escolher meus sistemas?",
             "diff-1": "⚡ 0% de Lag no Servidor", "diff-2": "🎨 Painéis 100% Responsivos", "diff-3": "🔒 Segurança contra exploits", "diff-4": "⚙️ Suporte e Atualizações", "diff-5": "🚀 Otimização Extrema (Client/Server)", "diff-6": "💡 Códigos Limpos e Fáceis de Configurar",
+            "calc-title": "Calculadora de Orçamento", "calc-subtitle": "Selecione o seu sistema e prazo para gerar uma mensagem pronta para enviar no Discord",
+            "calc-label-type": "Tipo de Sistema / Projeto:", "calc-label-deadline": "Prazo Desejado:",
+            "calc-result-title": "Mensagem Pronta para Envio:", "calc-copy": "Copiar Mensagem", "calc-copied": "Copiado com sucesso! Cole no meu Discord para fechar.",
             "faq-main-title": "Perguntas Frequentes",
             "faq-q1": "Os scripts têm proteção contra leaks (vazamentos)?", "faq-a1": "Sim! Todos os códigos possuem proteção avançada por chave de serial/IP e criptografia de alta segurança para garantir exclusividade ao seu servidor.",
             "faq-q2": "Como funciona o suporte pós-compra?", "faq-a2": "Ofereço suporte completo para instalação, configuração inicial e correção de eventuais bugs de compatibilidade diretamente via Discord.",
@@ -47,21 +51,25 @@ document.addEventListener("DOMContentLoaded", () => {
             "modal-order": "Encomendar Sistema"
         },
         en: {
-            "nav-home": "Home", "nav-about": "About", "nav-projects": "Projects", "nav-diff": "Features", "nav-faq": "FAQ", "nav-reviews": "Reviews", "nav-contact": "Contact",
+            "nav-home": "Home", "nav-about": "About", "nav-projects": "Projects", "nav-diff": "Features", "nav-calc": "Budget", "nav-faq": "FAQ", "nav-reviews": "Reviews", "nav-contact": "Contact",
             "hero-title": "Developing the future of your <span>MTA Server</span>",
             "hero-desc": "Specialist in advanced scripts, extreme optimization, modern panels, and exclusive systems like electric vehicles.",
-            "btn-projects": "View Projects", "btn-contact": "Get in Touch",
+            "btn-projects": "View Projects", "btn-budget": "Calculate Budget",
+            "partners-title": "Systems validated and trusted by owners of top servers:",
             "about-title": "About Me",
             "about-p1": "Hello! I'm <strong>Perry</strong>, a developer passionate about creating unique and immersive experiences in <strong>Multi Theft Auto (MTA)</strong>. My main focus is building clean, highly optimized (client/server) systems with flawless UI/UX.",
             "about-p2": "Whether building complex mechanics, detailed tuning systems, or technological innovations like electric vehicles for your server, I am committed to delivering stability, zero lag, and total exploit protection.",
             "projects-title": "My Projects",
             "projects-subtitle": "Click on a card to view full details and specifications",
-            "proj1-img": "System Preview", "proj1-title": "Electric Car System", "proj1-desc": "Advanced mechanics with custom HUD, battery charging, personalized sound, and perfect synchronization.",
-            "proj2-img": "System Preview", "proj2-title": "Pro Tuning Panel", "proj2-desc": "Modern cyberpunk interface for aesthetic and performance vehicle customization with live preview.",
-            "proj3-img": "System Preview", "proj3-title": "Account Registration System", "proj3-desc": "Smooth, secure login and register screen integrated with database and full injection protection.",
+            "proj1-title": "Electric Car System", "proj1-desc": "Advanced mechanics with custom HUD, battery charging, personalized sound, and perfect synchronization.",
+            "proj2-title": "Pro Tuning Panel", "proj2-desc": "Modern cyberpunk interface for aesthetic and performance vehicle customization with live preview.",
+            "proj3-title": "Account Registration System", "proj3-desc": "Smooth, secure login and register screen integrated with database and full injection protection.",
             "tag-security": "Security", "tag-ui": "Modern UI",
             "diff-title": "Why choose my systems?",
             "diff-1": "⚡ 0% Server Lag", "diff-2": "🎨 100% Responsive Panels", "diff-3": "🔒 Exploit Protection", "diff-4": "⚙️ Support & Updates", "diff-5": "🚀 Extreme Optimization (Client/Server)", "diff-6": "💡 Clean & Easy to Configure Code",
+            "calc-title": "Budget Calculator", "calc-subtitle": "Select your system and deadline to generate a ready-to-send message for Discord",
+            "calc-label-type": "System / Project Type:", "calc-label-deadline": "Desired Deadline:",
+            "calc-result-title": "Ready-to-Send Message:", "calc-copy": "Copy Message", "calc-copied": "Copied successfully! Paste it into my Discord to order.",
             "faq-main-title": "Frequently Asked Questions",
             "faq-q1": "Do scripts have anti-leak protection?", "faq-a1": "Yes! All codes feature advanced serial/IP key protection and high-security encryption to ensure exclusivity for your server.",
             "faq-q2": "How does post-purchase support work?", "faq-a2": "I offer complete support for installation, initial setup, and resolving any compatibility bugs directly via Discord.",
@@ -92,9 +100,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 el.innerHTML = translations[currentLang][key];
             }
         });
+        updateCalculatorMessage();
     });
 
-    // 3. Efeito de Digitação (Typing Effect)
+    // 3. Efeito de Digitação
     const typingElement = document.getElementById("typing-text");
     let charIndex = 0;
     const textToType = translations.pt["hero-desc"];
@@ -112,7 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 4. Acordeão do FAQ
     const faqItems = document.querySelectorAll(".faq-item");
-
     faqItems.forEach(item => {
         const question = item.querySelector(".faq-question");
         question.addEventListener("click", () => {
@@ -123,7 +131,40 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 5. Dados Dinâmicos dos Modais de Projetos (PT / EN)
+    // 5. Lógica da Calculadora de Orçamento Dinâmica
+    const calcType = document.getElementById("calc-type");
+    const calcDeadline = document.getElementById("calc-deadline");
+    const calcOutputBox = document.getElementById("calc-output-box");
+    const calcCopyBtn = document.getElementById("calc-copy-btn");
+    const calcCopiedMsg = document.getElementById("calc-copied-msg");
+
+    function updateCalculatorMessage() {
+        const system = calcType.value;
+        const deadline = calcDeadline.value;
+
+        if (currentLang === "pt") {
+            calcOutputBox.textContent = `Olá Perry! Gostaria de encomendar: ${system} com prazo: ${deadline}. Poderia me passar um orçamento?`;
+            calcCopyBtn.textContent = "Copiar Mensagem";
+            calcCopiedMsg.textContent = "Copiado com sucesso! Cole no meu Discord para fechar.";
+        } else {
+            calcOutputBox.textContent = `Hello Perry! I would like to order: ${system} with deadline: ${deadline}. Could you give me a quote?`;
+            calcCopyBtn.textContent = "Copy Message";
+            calcCopiedMsg.textContent = "Copied successfully! Paste it into my Discord to order.";
+        }
+    }
+
+    calcType.addEventListener("change", updateCalculatorMessage);
+    calcDeadline.addEventListener("change", updateCalculatorMessage);
+
+    calcCopyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(calcOutputBox.textContent);
+        calcCopiedMsg.style.display = "block";
+        setTimeout(() => {
+            calcCopiedMsg.style.display = "none";
+        }, 4000);
+    });
+
+    // 6. Dados Dinâmicos dos Modais de Projetos (PT / EN)
     const projectDetails = {
         1: {
             pt: {
@@ -228,12 +269,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 6. Contador de Visualizações via LocalStorage
+    // 7. Contador de Visualizações via LocalStorage
     const visitCountEl = document.getElementById("visit-count");
     let visits = localStorage.getItem("perrydev_visits");
     
     if (!visits) {
-        visits = 1245; // Valor base inicial profissional
+        visits = 1420;
     } else {
         visits = parseInt(visits) + 1;
     }
