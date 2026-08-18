@@ -9,16 +9,17 @@
 </head>
 <body>
 
-    <!-- Navegação -->
     <header class="navbar">
         <div class="logo">Perry<span>Dev</span></div>
         <ul class="nav-links" id="nav-links">
-            <li><a href="#inicio">Início</a></li>
-            <li><a href="#sobre">Sobre</a></li>
-            <li><a href="#projetos">Projetos</a></li>
-            <li><a href="#diferenciais">Diferenciais</a></li>
-            <li><a href="#depoimentos">Depoimentos</a></li>
-            <li><a href="#contato">Contato</a></li>
+            <li><a href="#inicio" data-i18n="nav-home">Início</a></li>
+            <li><a href="#sobre" data-i18n="nav-about">Sobre</a></li>
+            <li><a href="#projetos" data-i18n="nav-projects">Projetos</a></li>
+            <li><a href="#diferenciais" data-i18n="nav-diff">Diferenciais</a></li>
+            <li><a href="#faq" data-i18n="nav-faq">FAQ</a></li>
+            <li><a href="#depoimentos" data-i18n="nav-reviews">Depoimentos</a></li>
+            <li><a href="#contato" data-i18n="nav-contact">Contato</a></li>
+            <li><button id="lang-toggle" class="lang-btn">EN</button></li>
         </ul>
         <div class="menu-toggle" id="mobile-menu">
             <span class="bar"></span>
@@ -27,39 +28,35 @@
         </div>
     </header>
 
-    <!-- Hero Section (Início) -->
     <section id="inicio" class="hero">
         <div class="hero-content">
-            <h1>Desenvolvendo o futuro do seu <span>Servidor MTA</span></h1>
-            <p id="typing-text">Especialista em scripts avançados, otimização extrema, painéis modernos e sistemas exclusivos como veículos elétricos.</p>
+            <h1 data-i18n="hero-title">Desenvolvendo o futuro do seu <span>Servidor MTA</span></h1>
+            <p id="typing-text" data-i18n="hero-desc">Especialista em scripts avançados, otimização extrema, painéis modernos e sistemas exclusivos como veículos elétricos.</p>
             <div class="hero-buttons">
-                <a href="#projetos" class="btn">Ver Projetos</a>
-                <a href="#contato" class="btn btn-outline">Fale Comigo</a>
+                <a href="#projetos" class="btn" data-i18n="btn-projects">Ver Projetos</a>
+                <a href="#contato" class="btn btn-outline" data-i18n="btn-contact">Fale Comigo</a>
             </div>
         </div>
     </section>
 
-    <!-- Sobre Mim -->
     <section id="sobre" class="section">
-        <h2>Sobre Mim</h2>
+        <h2 data-i18n="about-title">Sobre Mim</h2>
         <div class="about-container">
             <div class="about-card">
-                <p>Olá! Sou o <strong>Perry</strong>, um desenvolvedor apaixonado por criar experiências únicas e imersivas no <strong>Multi Theft Auto (MTA)</strong>. O meu foco principal é desenvolver sistemas limpos, altamente otimizados (client/server) e com uma interface visual impecável (UI/UX).</p>
-                <p>Seja criando mecânicas complexas, sistemas de tunagem detalhados ou inovações tecnológicas como carros elétricos para o seu servidor, trabalho focado em entregar estabilidade, zero lag e segurança total contra exploits.</p>
+                <p data-i18n="about-p1">Olá! Sou o <strong>Perry</strong>, um desenvolvedor apaixonado por criar experiências únicas e imersivas no <strong>Multi Theft Auto (MTA)</strong>. O meu foco principal é desenvolver sistemas limpos, altamente otimizados (client/server) e com uma interface visual impecável (UI/UX).</p>
+                <p data-i18n="about-p2">Seja criando mecânicas complexas, sistemas de tunagem detalhados ou inovações tecnológicas como carros elétricos para o seu servidor, trabalho focado em entregar estabilidade, zero lag e segurança total contra exploits.</p>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Projetos -->
     <section id="projetos" class="section">
-        <h2>Meus Projetos</h2>
+        <h2 data-i18n="projects-title">Meus Projetos</h2>
         <div class="grid-projetos">
-            <!-- Projeto 1 -->
             <div class="card">
-                <div class="card-img">Prévia do Sistema</div>
+                <div class="card-img" data-i18n="proj1-img">Prévia do Sistema</div>
                 <div class="card-content">
-                    <h3>Sistema de Carro Elétrico</h3>
-                    <p>Mecânica avançada com HUD própria, carregamento de bateria, som personalizado e sincronização perfeita.</p>
+                    <h3 data-i18n="proj1-title">Sistema de Carro Elétrico</h3>
+                    <p data-i18n="proj1-desc">Mecânica avançada com HUD própria, carregamento de bateria, som personalizado e sincronização perfeita.</p>
                     <div class="tags">
                         <span>Lua</span>
                         <span>Client/Server</span>
@@ -68,12 +65,11 @@
                 </div>
             </div>
 
-            <!-- Projeto 2 -->
             <div class="card">
-                <div class="card-img">Prévia do Sistema</div>
+                <div class="card-img" data-i18n="proj2-img">Prévia do Sistema</div>
                 <div class="card-content">
-                    <h3>Painel de Tunagem Pro</h3>
-                    <p>Interface moderna em estilo cyberpunk para modificação estética e de performance de veículos com pré-visualização.</p>
+                    <h3 data-i18n="proj2-title">Painel de Tunagem Pro</h3>
+                    <p data-i18n="proj2-desc">Interface moderna em estilo cyberpunk para modificação estética e de performance de veículos com pré-visualização.</p>
                     <div class="tags">
                         <span>CEF / HTML</span>
                         <span>Lua</span>
@@ -82,66 +78,104 @@
                 </div>
             </div>
 
-            <!-- Projeto 3 -->
             <div class="card">
-                <div class="card-img">Prévia do Sistema</div>
+                <div class="card-img" data-i18n="proj3-img">Prévia do Sistema</div>
                 <div class="card-content">
-                    <h3>Sistema de Criação de Conta</h3>
-                    <p>Tela de registo e login fluida, segura, integrada com base de dados e proteção total contra injeções.</p>
+                    <h3 data-i18n="proj3-title">Sistema de Criação de Conta</h3>
+                    <p data-i18n="proj3-desc">Tela de registo e login fluida, segura, integrada com base de dados e proteção total contra injeções.</p>
                     <div class="tags">
-                        <span>Segurança</span>
+                        <span data-i18n="tag-security">Segurança</span>
                         <span>Database</span>
-                        <span>UI Moderna</span>
+                        <span data-i18n="tag-ui">UI Moderna</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Seção de Diferenciais -->
     <section id="diferenciais" class="section">
-        <h2>Por que escolher meus sistemas?</h2>
+        <h2 data-i18n="diff-title">Por que escolher meus sistemas?</h2>
         <div class="grid-habilidades">
-            <div class="skill-box">⚡ 0% de Lag no Servidor</div>
-            <div class="skill-box">🎨 Painéis 100% Responsivos</div>
-            <div class="skill-box">🔒 Segurança contra exploits</div>
-            <div class="skill-box">⚙️ Suporte e Atualizações</div>
-            <div class="skill-box">🚀 Otimização Extrema (Client/Server)</div>
-            <div class="skill-box">💡 Códigos Limpos e Fáceis de Configurar</div>
+            <div class="skill-box" data-i18n="diff-1">⚡ 0% de Lag no Servidor</div>
+            <div class="skill-box" data-i18n="diff-2">🎨 Painéis 100% Responsivos</div>
+            <div class="skill-box" data-i18n="diff-3">🔒 Segurança contra exploits</div>
+            <div class="skill-box" data-i18n="diff-4">⚙️ Suporte e Atualizações</div>
+            <div class="skill-box" data-i18n="diff-5">🚀 Otimização Extrema (Client/Server)</div>
+            <div class="skill-box" data-i18n="diff-6">💡 Códigos Limpos e Fáceis de Configurar</div>
         </div>
     </section>
 
-    <!-- Seção de Depoimentos -->
+    <section id="faq" class="section">
+        <h2 data-i18n="faq-main-title">Perguntas Frequentes</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faq-q1">Os scripts têm proteção contra leaks (vazamentos)?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p data-i18n="faq-a1">Sim! Todos os códigos possuem proteção avançada por chave de serial/IP e criptografia de alta segurança para garantir exclusividade ao seu servidor.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faq-q2">Como funciona o suporte pós-compra?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p data-i18n="faq-a2">Ofereço suporte completo para instalação, configuração inicial e correção de eventuais bugs de compatibilidade diretamente via Discord.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faq-q3">Existe garantia de otimização e zero lag?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p data-i18n="faq-a3">Com certeza. Os recursos são rigorosamente testados em servidores de grande porte para garantir consumo zero de processamento desnecessário (client/server balanceado).</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span data-i18n="faq-q4">Aceita encomendas de sistemas personalizados?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-answer">
+                    <p data-i18n="faq-a4">Sim, desenvolvo sistemas sob medida para a proposta do seu servidor. Entre em contato pelo Discord para orçamentos e prazos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="depoimentos" class="section">
-        <h2>O que dizem os Clientes</h2>
+        <h2 data-i18n="reviews-title">O que dizem os Clientes</h2>
         <div class="grid-depoimentos">
             <div class="card testimonial-card">
                 <div class="card-content">
-                    <p>"O sistema de carro elétrico rodou perfeitamente no meu servidor, zero lag e sincronização impecável. Recomendo muito!"</p>
-                    <div class="author"><strong>Carlos Silva</strong> - Dono de Servidor MTA</div>
+                    <p data-i18n="rev1-text">"O sistema de carro elétrico rodou perfeitamente no meu servidor, zero lag e sincronização impecável. Recomendo muito!"</p>
+                    <div class="author"><strong>Carlos Silva</strong> - <span data-i18n="rev1-role">Dono de Servidor MTA</span></div>
                 </div>
             </div>
             <div class="card testimonial-card">
                 <div class="card-content">
-                    <p>"Painel de tunagem mais lindo e otimizado que já vi. A interface cyberpunk combinou perfeitamente com a proposta do nosso server."</p>
-                    <div class="author"><strong>Gabriel Souza</strong> - Administrador</div>
+                    <p data-i18n="rev2-text">"Painel de tunagem mais lindo e otimizado que já vi. A interface cyberpunk combinou perfeitamente com a proposta do nosso server."</p>
+                    <div class="author"><strong>Gabriel Souza</strong> - <span data-i18n="rev2-role">Administrador</span></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contato e Rodapé -->
     <section id="contato" class="section footer-contact">
-        <h2>Vamos Trabalhar Juntos?</h2>
-        <p>Me chame no Discord para orçamentos, encomendas de sistemas exclusivos ou parcerias.</p>
+        <h2 data-i18n="contact-title">Vamos Trabalhar Juntos?</h2>
+        <p data-i18n="contact-desc">Me chame no Discord para orçamentos, encomendas de sistemas exclusivos ou parcerias.</p>
         <div class="contatos-links">
-            <a href="https://discord.com" target="_blank" class="btn">Meu Discord: perrydev</a>
-            <a href="https://github.com/perrydevmta" target="_blank" class="btn btn-outline">Meu GitHub</a>
+            <a href="https://discord.gg/SEU_DISCORD_AQUI" target="_blank" class="btn" data-i18n="btn-discord">Meu Discord: perrydev</a>
+            <a href="https://github.com/perrydevmta" target="_blank" class="btn btn-outline" data-i18n="btn-github">Meu GitHub</a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 Perry Dev. Todos os direitos reservados.</p>
+        <p data-i18n="footer-rights">&copy; 2026 Perry Dev. Todos os direitos reservados.</p>
     </footer>
 
     <script src="script.js"></script>
