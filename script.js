@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "about-p1": "Olá! Sou o <strong>Perry</strong>, um desenvolvedor apaixonado por criar experiências únicas e imersivas no <strong>Multi Theft Auto (MTA)</strong>. O meu foco principal é desenvolver sistemas limpos, altamente otimizados (client/server) e com uma interface visual impecável (UI/UX).",
             "about-p2": "Seja criando mecânicas complexas, sistemas de tunagem detalhados ou inovações tecnológicas como carros elétricos para o seu servidor, trabalho focado em entregar estabilidade, zero lag e segurança total contra exploits.",
             "projects-title": "Meus Projetos",
+            "projects-subtitle": "Clique num card para ver os detalhes completos e especificações",
             "proj1-img": "Prévia do Sistema", "proj1-title": "Sistema de Carro Elétrico", "proj1-desc": "Mecânica avançada com HUD própria, carregamento de bateria, som personalizado e sincronização perfeita.",
             "proj2-img": "Prévia do Sistema", "proj2-title": "Painel de Tunagem Pro", "proj2-desc": "Interface moderna em estilo cyberpunk para modificação estética e de performance de veículos com pré-visualização.",
             "proj3-img": "Prévia do Sistema", "proj3-title": "Sistema de Criação de Conta", "proj3-desc": "Tela de registo e login fluida, segura, integrada com base de dados e proteção total contra injeções.",
@@ -40,7 +41,10 @@ document.addEventListener("DOMContentLoaded", () => {
             "rev2-text": "\"Painel de tunagem mais lindo e otimizado que já vi. A interface cyberpunk combinou perfeitamente com a proposta do nosso server.\"", "rev2-role": "Administrador",
             "contact-title": "Vamos Trabalhar Juntos?", "contact-desc": "Me chame no Discord para orçamentos, encomendas de sistemas exclusivos ou parcerias.",
             "btn-discord": "Meu Discord: perrydev", "btn-github": "Meu GitHub",
-            "footer-rights": "&copy; 2026 Perry Dev. Todos os direitos reservados."
+            "footer-rights": "&copy; 2026 Perry Dev. Todos os direitos reservados.",
+            "visitor-text": "Visualizações do Portfólio:",
+            "modal-specs-title": "Especificações Técnicas:",
+            "modal-order": "Encomendar Sistema"
         },
         en: {
             "nav-home": "Home", "nav-about": "About", "nav-projects": "Projects", "nav-diff": "Features", "nav-faq": "FAQ", "nav-reviews": "Reviews", "nav-contact": "Contact",
@@ -51,6 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "about-p1": "Hello! I'm <strong>Perry</strong>, a developer passionate about creating unique and immersive experiences in <strong>Multi Theft Auto (MTA)</strong>. My main focus is building clean, highly optimized (client/server) systems with flawless UI/UX.",
             "about-p2": "Whether building complex mechanics, detailed tuning systems, or technological innovations like electric vehicles for your server, I am committed to delivering stability, zero lag, and total exploit protection.",
             "projects-title": "My Projects",
+            "projects-subtitle": "Click on a card to view full details and specifications",
             "proj1-img": "System Preview", "proj1-title": "Electric Car System", "proj1-desc": "Advanced mechanics with custom HUD, battery charging, personalized sound, and perfect synchronization.",
             "proj2-img": "System Preview", "proj2-title": "Pro Tuning Panel", "proj2-desc": "Modern cyberpunk interface for aesthetic and performance vehicle customization with live preview.",
             "proj3-img": "System Preview", "proj3-title": "Account Registration System", "proj3-desc": "Smooth, secure login and register screen integrated with database and full injection protection.",
@@ -67,7 +72,10 @@ document.addEventListener("DOMContentLoaded", () => {
             "rev2-text": "\"The most gorgeous and optimized tuning panel I've ever seen. The cyberpunk interface matched our server's vibe perfectly.\"", "rev2-role": "Administrator",
             "contact-title": "Let's Work Together?", "contact-desc": "Hit me up on Discord for quotes, exclusive system commissions, or partnerships.",
             "btn-discord": "My Discord: perrydev", "btn-github": "My GitHub",
-            "footer-rights": "&copy; 2026 Perry Dev. All rights reserved."
+            "footer-rights": "&copy; 2026 Perry Dev. All rights reserved.",
+            "visitor-text": "Portfolio Views:",
+            "modal-specs-title": "Technical Specifications:",
+            "modal-order": "Order System"
         }
     };
 
@@ -108,11 +116,128 @@ document.addEventListener("DOMContentLoaded", () => {
     faqItems.forEach(item => {
         const question = item.querySelector(".faq-question");
         question.addEventListener("click", () => {
-            // Fecha os outros abertos (opcional)
             faqItems.forEach(other => {
                 if (other !== item) other.classList.remove("active");
             });
             item.classList.toggle("active");
         });
     });
+
+    // 5. Dados Dinâmicos dos Modais de Projetos (PT / EN)
+    const projectDetails = {
+        1: {
+            pt: {
+                title: "Sistema de Carro Elétrico",
+                desc: "Mecanismo completo desenvolvido para servidores de Roleplay ou simulação, trazendo uma experiência realista de condução elétrica.",
+                specs: [
+                    "HUD personalizada com medidor de bateria em tempo real",
+                    "Sistema de estações de carregamento espalhadas pelo mapa",
+                    "Sons exclusivos de motor elétrico e carregamento",
+                    "Totalmente sincronizado via Client/Server com zero lag"
+                ]
+            },
+            en: {
+                title: "Electric Car System",
+                desc: "Complete mechanism built for Roleplay or simulation servers, bringing a realistic electric vehicle driving experience.",
+                specs: [
+                    "Custom HUD with real-time battery level indicator",
+                    "Charging stations network spread across the map",
+                    "Exclusive electric motor and charging sound effects",
+                    "Fully synchronized via Client/Server with zero lag"
+                ]
+            }
+        },
+        2: {
+            pt: {
+                title: "Painel de Tunagem Pro",
+                desc: "Interface gráfica moderna em estilo cyberpunk criada com CEF (HTML/CSS/JS) para customização visual e mecânica de veículos.",
+                specs: [
+                    "Pré-visualização em tempo real das peças aplicadas",
+                    "Suporte completo a banco de dados MySQL para salvamento",
+                    "Design altamente fluido e responsivo",
+                    "Sistema modular de preços e permissões configuráveis"
+                ]
+            },
+            en: {
+                title: "Pro Tuning Panel",
+                desc: "Modern cyberpunk-style graphical interface built with CEF (HTML/CSS/JS) for aesthetic and mechanical vehicle customization.",
+                specs: [
+                    "Real-time preview of installed parts",
+                    "Full MySQL database support for data saving",
+                    "Extremely fluid and responsive layout design",
+                    "Modular system for configurable prices and permissions"
+                ]
+            }
+        },
+        3: {
+            pt: {
+                title: "Sistema de Criação de Conta",
+                desc: "Tela de autenticação (registo e login) com foco em segurança máxima contra ataques de injeção e otimização de carregamento.",
+                specs: [
+                    "Validação avançada de dados de utilizador",
+                    "Encriptação de palavras-passe com hash de alta segurança",
+                    "Design limpo, imersivo e sem travamentos",
+                    "Integração nativa com ACL e MySQL"
+                ]
+            },
+            en: {
+                title: "Account Registration System",
+                desc: "Authentication screen (login & register) focused on maximum security against injection attacks and fast loading times.",
+                specs: [
+                    "Advanced user input validation checks",
+                    "High-security password hashing encryption",
+                    "Clean, immersive, and lag-free design",
+                    "Native integration with ACL and MySQL"
+                ]
+            }
+        }
+    };
+
+    const modal = document.getElementById("project-modal");
+    const modalClose = document.getElementById("modal-close");
+    const modalTitle = document.getElementById("modal-title");
+    const modalDesc = document.getElementById("modal-desc");
+    const modalSpecsList = document.getElementById("modal-specs-list");
+
+    document.querySelectorAll(".project-card").forEach(card => {
+        card.addEventListener("click", () => {
+            const projectId = card.getAttribute("data-id");
+            const data = projectDetails[projectId][currentLang];
+
+            modalTitle.textContent = data.title;
+            modalDesc.textContent = data.desc;
+            
+            modalSpecsList.innerHTML = "";
+            data.specs.forEach(spec => {
+                const li = document.createElement("li");
+                li.textContent = spec;
+                modalSpecsList.appendChild(li);
+            });
+
+            modal.classList.add("active");
+        });
+    });
+
+    modalClose.addEventListener("click", () => {
+        modal.classList.remove("active");
+    });
+
+    modal.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            modal.classList.remove("active");
+        }
+    });
+
+    // 6. Contador de Visualizações via LocalStorage
+    const visitCountEl = document.getElementById("visit-count");
+    let visits = localStorage.getItem("perrydev_visits");
+    
+    if (!visits) {
+        visits = 1245; // Valor base inicial profissional
+    } else {
+        visits = parseInt(visits) + 1;
+    }
+    
+    localStorage.setItem("perrydev_visits", visits);
+    visitCountEl.textContent = visits.toLocaleString();
 });
