@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,19 +11,25 @@
 
     <header class="navbar">
         <div class="logo">Perry<span>Dev</span></div>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
             <li><a href="#inicio">Início</a></li>
             <li><a href="#sobre">Sobre</a></li>
             <li><a href="#projetos">Projetos</a></li>
             <li><a href="#diferenciais">Diferenciais</a></li>
+            <li><a href="#depoimentos">Depoimentos</a></li>
             <li><a href="#contato">Contato</a></li>
         </ul>
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
     </header>
 
     <section id="inicio" class="hero">
-        <div class="hero-content">
+        <div class="hero-content reveal">
             <h1>Desenvolvendo o futuro do seu <span>Servidor MTA</span></h1>
-            <p>Especialista em scripts avançados, otimização extrema, painéis modernos e sistemas exclusivos como veículos elétricos.</p>
+            <p id="typing-text">Especialista em scripts avançados, otimização extrema, painéis modernos e sistemas exclusivos como veículos elétricos.</p>
             <div class="hero-buttons">
                 <a href="#projetos" class="btn">Ver Projetos</a>
                 <a href="#contato" class="btn btn-outline">Fale Comigo</a>
@@ -31,17 +37,17 @@
         </div>
     </section>
 
-    <section id="sobre" class="section">
+    <section id="sobre" class="section reveal">
         <h2>Sobre Mim</h2>
         <div class="about-container">
             <div class="about-card">
-                <p>Olá! Sou o <strong>Perry</strong>, um desenvolvedor apaixonado por criar experiências únicas e imersivas no <strong>Multi Theft Auto (MTA)</strong>. Meu foco principal é desenvolver sistemas limpos, altamente otimizados (client/server) e com uma interface visual impecável (UI/UX).</p>
-                <p>Seja criando mecânicas complexas, sistemas de tunagem detalhados ou inovações tecnológicas como carros elétricos para o seu servidor, trabalho focado em entregar estabilidade, zero lag e segurança contra exploits.</p>
+                <p>Olá! Sou o <strong>Perry</strong>, um desenvolvedor apaixonado por criar experiências únicas e imersivas no <strong>Multi Theft Auto (MTA)</strong>. O meu foco principal é desenvolver sistemas limpos, altamente otimizados (client/server) e com uma interface visual impecável (UI/UX).</p>
+                <p>Seja criando mecânicas complexas, sistemas de tunagem detalhados ou inovações tecnológicas como carros elétricos para o seu servidor, trabalho focado em entregar estabilidade, zero lag e segurança total contra exploits.</p>
             </div>
         </div>
     </section>
 
-    <section id="projetos" class="section">
+    <section id="projetos" class="section reveal">
         <h2>Meus Projetos</h2>
         <div class="grid-projetos">
             <div class="card">
@@ -74,7 +80,7 @@
                 <div class="card-img">Prévia do Sistema</div>
                 <div class="card-content">
                     <h3>Sistema de Criação de Conta</h3>
-                    <p>Tela de registro e login fluida, segura, integrada com banco de dados e proteção total contra injeções.</p>
+                    <p>Tela de registo e login fluida, segura, integrada com base de dados e proteção total contra injeções.</p>
                     <div class="tags">
                         <span>Segurança</span>
                         <span>Database</span>
@@ -85,7 +91,7 @@
         </div>
     </section>
 
-    <section id="diferenciais" class="section">
+    <section id="diferenciais" class="section reveal">
         <h2>Por que escolher meus sistemas?</h2>
         <div class="grid-habilidades">
             <div class="skill-box">⚡ 0% de Lag no Servidor</div>
@@ -97,7 +103,25 @@
         </div>
     </section>
 
-    <section id="contato" class="section footer-contact">
+    <section id="depoimentos" class="section reveal">
+        <h2>O que dizem os Clientes</h2>
+        <div class="grid-depoimentos">
+            <div class="card testimonial-card">
+                <div class="card-content">
+                    <p>"O sistema de carro elétrico rodou perfeitamente no meu servidor, zero lag e sincronização impecável. Recomendo muito!"</p>
+                    <div class="author"><strong>Carlos Silva</strong> - Dono de Servidor MTA</div>
+                </div>
+            </div>
+            <div class="card testimonial-card">
+                <div class="card-content">
+                    <p>"Painel de tunagem mais lindo e otimizado que já vi. A interface cyberpunk combinou perfeitamente com a proposta do nosso server."</p>
+                    <div class="author"><strong>Gabriel Souza</strong> - Administrador</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section footer-contact reveal">
         <h2>Vamos Trabalhar Juntos?</h2>
         <p>Me chame no Discord para orçamentos, encomendas de sistemas exclusivos ou parcerias.</p>
         <div class="contatos-links">
