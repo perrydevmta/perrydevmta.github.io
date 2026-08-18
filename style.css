@@ -108,7 +108,7 @@ body {
 
 /* Hero Section (Início) */
 .hero {
-    height: 100vh;
+    height: 90vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -142,6 +142,42 @@ body {
     justify-content: center;
     gap: 15px;
     flex-wrap: wrap;
+}
+
+/* Faixa de Servidores Parceiros */
+.partners-section {
+    background-color: #0e1422;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 25px 20px;
+    text-align: center;
+}
+
+.partners-container span {
+    display: block;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.partners-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.partner-badge {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(0, 242, 254, 0.15);
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-main);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
 }
 
 /* Botões Modernos */
@@ -225,7 +261,7 @@ body {
     color: var(--text-main);
 }
 
-/* Grid de Projetos */
+/* Grid de Projetos com Imagens Reais */
 .grid-projetos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -250,14 +286,16 @@ body {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: rgba(0, 242, 254, 0.15);
+    background: rgba(11, 15, 25, 0.85);
+    backdrop-filter: blur(4px);
     color: var(--primary);
-    padding: 4px 10px;
+    padding: 5px 12px;
     border-radius: 20px;
     font-size: 0.75rem;
     font-weight: 700;
     opacity: 0;
     transition: opacity 0.3s ease;
+    border: 1px solid var(--primary);
 }
 
 .project-card:hover::after {
@@ -273,10 +311,18 @@ body {
 .card-img {
     height: 220px;
     background-color: #1e293b;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-muted);
+    overflow: hidden;
+}
+
+.card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.card:hover .card-img img {
+    transform: scale(1.08);
 }
 
 .card-content {
@@ -307,6 +353,81 @@ body {
     border-radius: 20px;
     font-size: 0.8rem;
     font-weight: 700;
+}
+
+/* Calculadora de Orçamento */
+.calculator-container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.calc-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.calc-group label {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.calc-group select {
+    background-color: #0b0f19;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: var(--text-main);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.calc-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+}
+
+.calc-result {
+    background-color: rgba(11, 15, 25, 0.6);
+    border: 1px solid rgba(0, 242, 254, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.calc-result h4 {
+    color: var(--primary);
+    margin-bottom: 12px;
+    font-size: 1rem;
+}
+
+.calc-output {
+    background-color: #070910;
+    color: var(--text-muted);
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    text-align: left;
+    margin-bottom: 20px;
+    border-left: 3px solid var(--primary);
+    word-break: break-word;
+}
+
+#calc-copied-msg {
+    display: none;
+    color: var(--primary);
+    font-size: 0.85rem;
+    margin-top: 10px;
+    font-weight: 600;
 }
 
 /* Grid de Diferenciais */
@@ -559,7 +680,7 @@ footer {
         transition: max-height 0.4s ease;
     }
     .nav-links.active {
-        max-height: 450px;
+        max-height: 480px;
     }
     .hero h1 {
         font-size: 2.5rem;
