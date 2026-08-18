@@ -13,7 +13,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 2. Dicionário de Traduções (PT / EN)
+    // 2. Animações de Scroll (Fade-in Suave via Intersection Observer)
+    const observerOptions = {
+        root: null,
+        threshold: 0.12
+    };
+
+    const scrollObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll(".section, .card, .skill-box, .calculator-container, .faq-item, .about-card").forEach(el => {
+        el.classList.add("reveal");
+        scrollObserver.observe(el);
+    });
+
+    // 3. Dicionário de Traduções (PT / EN)
     const translations = {
         pt: {
             "nav-home": "Início", "nav-about": "Sobre", "nav-projects": "Projetos", "nav-diff": "Diferenciais", "nav-calc": "Orçamento", "nav-faq": "FAQ", "nav-reviews": "Depoimentos", "nav-contact": "Contato",
@@ -103,7 +123,7 @@ document.addEventListener("DOMContentLoaded", () => {
         updateCalculatorMessage();
     });
 
-    // 3. Efeito de Digitação
+    // 4. Efeito de Digitação
     const typingElement = document.getElementById("typing-text");
     let charIndex = 0;
     const textToType = translations.pt["hero-desc"];
@@ -119,7 +139,7 @@ document.addEventListener("DOMContentLoaded", () => {
     typingElement.textContent = "";
     setTimeout(typeText, 500);
 
-    // 4. Acordeão do FAQ
+    // 5. Acordeão do FAQ
     const faqItems = document.querySelectorAll(".faq-item");
     faqItems.forEach(item => {
         const question = item.querySelector(".faq-question");
@@ -131,7 +151,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // 5. Lógica da Calculadora de Orçamento Dinâmica
+    // 6. Lógica da Calculadora de Orçamento Dinâmica
     const calcType = document.getElementById("calc-type");
     const calcDeadline = document.getElementById("calc-deadline");
     const calcOutputBox = document.getElementById("calc-output-box");
@@ -164,9 +184,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }, 4000);
     });
 
-    // 6. Dados Dinâmicos dos Modais de Projetos (PT / EN)
+    // 7. Dados Dinâmicos dos Modais com Mídia (GIF / Vídeo demonstrativo)
     const projectDetails = {
         1: {
+            media: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=800&q=80", // Podes trocar por link de GIF ou MP4 do teu script
             pt: {
                 title: "Sistema de Carro Elétrico",
                 desc: "Mecanismo completo desenvolvido para servidores de Roleplay ou simulação, trazendo uma experiência realista de condução elétrica.",
@@ -189,6 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         2: {
+            media: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
             pt: {
                 title: "Painel de Tunagem Pro",
                 desc: "Interface gráfica moderna em estilo cyberpunk criada com CEF (HTML/CSS/JS) para customização visual e mecânica de veículos.",
@@ -211,6 +233,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         },
         3: {
+            media: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80",
             pt: {
                 title: "Sistema de Criação de Conta",
                 desc: "Tela de autenticação (registo e login) com foco em segurança máxima contra ataques de injeção e otimização de carregamento.",
@@ -239,11 +262,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalTitle = document.getElementById("modal-title");
     const modalDesc = document.getElementById("modal-desc");
     const modalSpecsList = document.getElementById("modal-specs-list");
+    const modalMediaContainer = document.getElementById("modal-media-container");
 
     document.querySelectorAll(".project-card").forEach(card => {
         card.addEventListener("click", () => {
             const projectId = card.getAttribute("data-id");
-            const data = projectDetails[projectId][currentLang];
+            const project = projectDetails[projectId];
+            const data = project[currentLang];
+
+            // Injetar imagem/GIF ou vídeo demonstrativo no modal
+            modalMediaContainer.innerHTML = `<img src="${project.media}" alt="${data.title}">`;
 
             modalTitle.textContent = data.title;
             modalDesc.textContent = data.desc;
@@ -269,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // 7. Contador de Visualizações via LocalStorage
+    // 8. Contador de Visualizações via LocalStorage
     const visitCountEl = document.getElementById("visit-count");
     let visits = localStorage.getItem("perrydev_visits");
     
