@@ -24,6 +24,19 @@ body {
     background-color: var(--bg-color);
     color: var(--text-main);
     line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Animação Scroll Reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Navegação */
@@ -70,6 +83,22 @@ body {
     text-shadow: var(--glow);
 }
 
+/* Menu Hamburguer */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    gap: 6px;
+}
+
+.menu-toggle .bar {
+    width: 28px;
+    height: 3px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
 /* Hero Section (Início) */
 .hero {
     height: 100vh;
@@ -99,6 +128,7 @@ body {
     font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto 30px;
+    min-height: 60px;
 }
 
 .hero-buttons {
@@ -197,7 +227,6 @@ body {
     border: 1px solid rgba(255,255,255,0.05);
 }
 
-/* Efeito ao passar o mouse no Card */
 .card:hover {
     transform: translateY(-10px);
     border-color: var(--primary);
@@ -264,12 +293,29 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Efeito ao passar o mouse */
 .skill-box:hover {
     transform: translateY(-8px);
     border-color: var(--primary);
     box-shadow: 0 10px 30px rgba(0, 242, 254, 0.25);
     background: linear-gradient(135deg, rgba(25, 33, 53, 0.95), rgba(18, 27, 48, 0.95));
+}
+
+/* Seção de Depoimentos */
+.grid-depoimentos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.testimonial-card p {
+    font-style: italic;
+    color: var(--text-main);
+    margin-bottom: 15px;
+}
+
+.author {
+    font-size: 0.9rem;
+    color: var(--primary);
 }
 
 /* Contato e Rodapé */
@@ -301,11 +347,29 @@ footer {
 /* Responsividade */
 @media (max-width: 768px) {
     .navbar {
-        flex-direction: column;
-        padding: 15px;
+        padding: 15px 25px;
+    }
+    .menu-toggle {
+        display: flex;
     }
     .nav-links {
-        margin-top: 15px;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(11, 15, 25, 0.95);
+        backdrop-filter: blur(12px);
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 20px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+    .nav-links.active {
+        max-height: 350px;
     }
     .hero h1 {
         font-size: 2.5rem;
