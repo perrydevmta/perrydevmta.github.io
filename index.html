@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perry Dev | Desenvolvedor MTA</title>
     
+    <!-- Meta Tags Open Graph -->
     <meta property="og:title" content="Perry Dev | Desenvolvedor MTA">
     <meta property="og:description" content="Especialista em scripts avançados, otimização extrema, painéis modernos e sistemas exclusivos para servidores MTA.">
     <meta property="og:type" content="website">
@@ -16,6 +17,7 @@
 </head>
 <body>
 
+    <!-- Navegação -->
     <header class="navbar">
         <div class="logo">Perry<span>Dev</span></div>
         <ul class="nav-links" id="nav-links">
@@ -36,6 +38,7 @@
         </div>
     </header>
 
+    <!-- Hero Section (Início) -->
     <section id="inicio" class="hero">
         <div class="hero-content">
             <h1 data-i18n="hero-title">Desenvolvendo o futuro do seu <span>Servidor MTA</span></h1>
@@ -47,6 +50,7 @@
         </div>
     </section>
 
+    <!-- Faixa de Servidores Parceiros (Social Proof) -->
     <section class="partners-section">
         <div class="partners-container">
             <span data-i18n="partners-title">Sistemas validados e aprovados por donos de grandes servidores:</span>
@@ -59,6 +63,7 @@
         </div>
     </section>
 
+    <!-- Sobre Mim -->
     <section id="sobre" class="section">
         <h2 data-i18n="about-title">Sobre Mim</h2>
         <div class="about-container">
@@ -69,10 +74,12 @@
         </div>
     </section>
 
+    <!-- Seção de Projetos -->
     <section id="projetos" class="section">
         <h2 data-i18n="projects-title">Meus Projetos</h2>
         <p class="section-subtitle" data-i18n="projects-subtitle">Clique num card para ver os detalhes completos e especificações</p>
         <div class="grid-projetos">
+            <!-- Projeto 1 -->
             <div class="card project-card" data-id="1">
                 <div class="card-img">
                     <img src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&w=600&q=80" alt="Carro Elétrico MTA">
@@ -88,6 +95,7 @@
                 </div>
             </div>
 
+            <!-- Projeto 2 -->
             <div class="card project-card" data-id="2">
                 <div class="card-img">
                     <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Painel Cyberpunk CEF">
@@ -103,6 +111,7 @@
                 </div>
             </div>
 
+            <!-- Projeto 3 -->
             <div class="card project-card" data-id="3">
                 <div class="card-img">
                     <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=600&q=80" alt="Sistema de Conta Login">
@@ -120,6 +129,7 @@
         </div>
     </section>
 
+    <!-- Seção de Diferenciais -->
     <section id="diferenciais" class="section">
         <h2 data-i18n="diff-title">Por que escolher meus sistemas?</h2>
         <div class="grid-habilidades">
@@ -132,6 +142,7 @@
         </div>
     </section>
 
+    <!-- Calculadora de Orçamentos Interativa -->
     <section id="calculadora" class="section">
         <h2 data-i18n="calc-title">Calculadora de Orçamento</h2>
         <p class="section-subtitle" data-i18n="calc-subtitle">Selecione o seu sistema e prazo para gerar uma mensagem pronta para enviar no Discord</p>
@@ -161,6 +172,7 @@
         </div>
     </section>
 
+    <!-- Seção de FAQ (Perguntas Frequentes) -->
     <section id="faq" class="section">
         <h2 data-i18n="faq-main-title">Perguntas Frequentes</h2>
         <div class="faq-container">
@@ -203,6 +215,7 @@
         </div>
     </section>
 
+    <!-- Seção de Depoimentos -->
     <section id="depoimentos" class="section">
         <h2 data-i18n="reviews-title">O que dizem os Clientes</h2>
         <div class="grid-depoimentos">
@@ -221,6 +234,7 @@
         </div>
     </section>
 
+    <!-- Contato e Rodapé -->
     <section id="contato" class="section footer-contact">
         <h2 data-i18n="contact-title">Vamos Trabalhar Juntos?</h2>
         <p data-i18n="contact-desc">Me chame no Discord para orçamentos, encomendas de sistemas exclusivos ou parcerias.</p>
@@ -237,9 +251,13 @@
         </div>
     </footer>
 
+    <!-- Janela Modal Dinâmica para Projetos -->
     <div id="project-modal" class="modal-overlay">
         <div class="modal-container">
             <button class="modal-close" id="modal-close">&times;</button>
+            <div class="modal-media" id="modal-media-container">
+                <!-- Pré-visualização em Vídeo / GIF injetada via JS -->
+            </div>
             <h3 id="modal-title">Título</h3>
             <p id="modal-desc">Descrição</p>
             <div class="modal-specs">
