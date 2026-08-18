@@ -207,27 +207,52 @@ body {
     font-weight: 700;
 }
 
-/* Grid de Habilidades */
+/* Grid de Diferenciais Reformulado (Substitui os antigos botões finos) */
 .grid-habilidades {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 25px;
-    text-align: center;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
 }
 
 .skill-box {
-    background-color: var(--card-bg);
-    padding: 25px 20px;
-    border-radius: 12px;
-    font-weight: 700;
-    border-bottom: 3px solid var(--primary);
-    transition: all 0.3s ease;
+    background: linear-gradient(135deg, rgba(21, 27, 43, 0.9), rgba(15, 23, 42, 0.9));
+    border: 1px solid rgba(0, 242, 254, 0.15);
+    padding: 35px 25px;
+    border-radius: 16px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-main);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
+/* Linha de Neon superior no card */
+.skill-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* Efeito ao passar o mouse */
 .skill-box:hover {
-    background-color: rgba(0, 242, 254, 0.05);
-    transform: translateY(-5px);
-    box-shadow: var(--glow);
+    transform: translateY(-8px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(0, 242, 254, 0.25);
+    background: linear-gradient(135deg, rgba(25, 33, 53, 0.95), rgba(18, 27, 48, 0.95));
+}
+
+.skill-box:hover::before {
+    opacity: 1;
 }
 
 /* Contato e Rodapé */
