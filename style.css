@@ -1,11 +1,11 @@
 /* Variáveis com novo Tema Cyber/Neon */
 :root {
-    --bg-color: #0b0f19; /* Fundo ainda mais escuro e elegante */
+    --bg-color: #0b0f19;
     --card-bg: #151b2b;
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
-    --primary: #00f2fe; /* Azul Ciano Neon */
-    --secondary: #4facfe; /* Azul para o degrade */
+    --primary: #00f2fe;
+    --secondary: #4facfe;
     --glow: 0 0 15px rgba(0, 242, 254, 0.4);
 }
 
@@ -106,7 +106,7 @@ body {
     display: inline-block;
     padding: 14px 32px;
     background: linear-gradient(to right, var(--primary), var(--secondary));
-    color: #000; /* Texto preto para destacar no fundo claro */
+    color: #000;
     text-decoration: none;
     border-radius: 8px;
     font-weight: 800;
