@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Perry Dev | Desenvolvedor MTA</title>
+    
+    <meta property="og:title" content="Perry Dev | Desenvolvedor MTA">
+    <meta property="og:description" content="Especialista em scripts avançados, otimização extrema, painéis modernos e sistemas exclusivos para servidores MTA.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://i.imgur.com/exemplo-logo.png"> <meta name="twitter:card" content="summary_large_image">
+
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
@@ -51,8 +57,9 @@
 
     <section id="projetos" class="section">
         <h2 data-i18n="projects-title">Meus Projetos</h2>
+        <p class="section-subtitle" data-i18n="projects-subtitle">Clique num card para ver os detalhes completos e especificações</p>
         <div class="grid-projetos">
-            <div class="card">
+            <div class="card project-card" data-id="1">
                 <div class="card-img" data-i18n="proj1-img">Prévia do Sistema</div>
                 <div class="card-content">
                     <h3 data-i18n="proj1-title">Sistema de Carro Elétrico</h3>
@@ -65,7 +72,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card project-card" data-id="2">
                 <div class="card-img" data-i18n="proj2-img">Prévia do Sistema</div>
                 <div class="card-content">
                     <h3 data-i18n="proj2-title">Painel de Tunagem Pro</h3>
@@ -78,7 +85,7 @@
                 </div>
             </div>
 
-            <div class="card">
+            <div class="card project-card" data-id="3">
                 <div class="card-img" data-i18n="proj3-img">Prévia do Sistema</div>
                 <div class="card-content">
                     <h3 data-i18n="proj3-title">Sistema de Criação de Conta</h3>
@@ -176,7 +183,25 @@
 
     <footer>
         <p data-i18n="footer-rights">&copy; 2026 Perry Dev. Todos os direitos reservados.</p>
+        <div class="visitor-counter">
+            <span data-i18n="visitor-text">Visualizações do Portfólio:</span> <span id="visit-count">1</span>
+        </div>
     </footer>
+
+    <div id="project-modal" class="modal-overlay">
+        <div class="modal-container">
+            <button class="modal-close" id="modal-close">&times;</button>
+            <h3 id="modal-title">Título</h3>
+            <p id="modal-desc">Descrição</p>
+            <div class="modal-specs">
+                <h4 data-i18n="modal-specs-title">Especificações Técnicas:</h4>
+                <ul id="modal-specs-list"></ul>
+            </div>
+            <div class="modal-footer-btn">
+                <a href="#contato" class="btn modal-order-btn" id="modal-order-link" data-i18n="modal-order">Encomendar Sistema</a>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
