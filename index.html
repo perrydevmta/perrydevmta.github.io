@@ -3,604 +3,462 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perry | Desenvolvedor Especialista</title>
+  <title>Perry | Desenvolvedor</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
     :root {
-      /* Paleta de Cores Premium */
-      --bg-base: #050505;
-      --bg-surface: #0f0f0f;
-      --bg-card: #141414;
-      --border-light: #222222;
-      --border-hover: #333333;
-      --text-primary: #ffffff;
+      --bg-base: #000000;
+      --bg-surface: #0a0a0a;
+      --bg-card: #111111;
+      --border-light: #27272a;
+      --border-hover: #3f3f46;
+      --text-primary: #f8fafc;
       --text-secondary: #a1a1aa;
-      --text-muted: #666666;
-      --accent: #10b981; /* Verde moderno */
-      --accent-hover: #059669;
-      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      --text-muted: #52525b;
+      --accent: #10b981;
+      --transition: all 0.3s ease;
     }
 
-    /* Reset e Base */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; font-size: 16px; }
+    
+    html { scroll-behavior: smooth; }
+
     body {
       background-color: var(--bg-base);
       color: var(--text-primary);
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
 
-    img, video { max-width: 100%; height: auto; display: block; }
-
-    /* Layout Container */
     .container {
       width: 100%;
-      max-width: 1280px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* =========================================
-       HEADER & NAVEGAÇÃO
-       ========================================= */
+    /* Header */
     header {
-      position: sticky; top: 0; z-index: 900;
-      background: rgba(5, 5, 5, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-light);
-      padding: 1.25rem 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.5rem 0; border-bottom: 1px solid var(--border-light);
+      background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 100;
     }
-    .nav-container { display: flex; justify-content: space-between; align-items: center; }
-    .brand { font-size: 1.5rem; font-weight: 700; color: var(--text-primary); text-decoration: none; letter-spacing: -0.5px; }
-    .brand span { color: var(--accent); }
-    
-    .nav-links { display: flex; gap: 2.5rem; align-items: center; }
-    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
+    .brand { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); text-decoration: none; }
+    .nav-links { display: flex; gap: 2rem; }
+    .nav-links a { color: var(--text-secondary); text-decoration: none; font-weight: 500; transition: var(--transition); }
     .nav-links a:hover { color: var(--text-primary); }
-    
-    .btn-primary {
+    .btn-login {
       background: var(--text-primary); color: var(--bg-base);
-      padding: 0.6rem 1.5rem; border-radius: 8px; text-decoration: none; 
-      font-weight: 600; font-size: 0.95rem; transition: var(--transition);
-      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 0.5rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: var(--transition);
     }
-    .btn-primary:hover { background: #e5e5e5; transform: translateY(-2px); }
 
-    /* =========================================
-       SISTEMA DE CARROSSEL PREMIUM (Estilo GTA V)
-       ========================================= */
-    .slider-wrapper {
-      position: relative; width: 100%; height: 100%;
-      border-radius: 12px; overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
-      background: #000;
-      group: slider; /* Para hover effects */
+    /* === SISTEMA DE CARROSSEL (SLIDER) === */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
     .slider-track {
-      display: flex; width: 100%; height: 100%;
-      overflow-x: auto; scroll-snap-type: x mandatory;
-      scroll-behavior: smooth; scrollbar-width: none;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* Oculta barra no Firefox */
     }
-    .slider-track::-webkit-scrollbar { display: none; }
+    .slider-track::-webkit-scrollbar {
+      display: none; /* Oculta barra no Chrome/Safari */
+    }
     .slide {
-      flex: 0 0 100%; width: 100%; height: 100%;
-      scroll-snap-align: center; position: relative;
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      scroll-snap-align: center;
+      position: relative;
     }
-    .slide img, .slide video { width: 100%; height: 100%; object-fit: cover; }
-    
-    /* Controles do Carrossel gerados via JS */
-    .slide-counter {
-      position: absolute; top: 1.25rem; left: 1.25rem; z-index: 10;
-      background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.1);
-      color: #fff; padding: 0.35rem 1rem; border-radius: 50px;
-      font-size: 0.85rem; font-weight: 600; letter-spacing: 1px;
+    .slide img, .slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
-    .slide-indicators {
-      position: absolute; bottom: 1.25rem; right: 1.25rem; z-index: 10;
-      display: flex; gap: 6px; align-items: center;
-    }
-    .dot {
-      width: 8px; height: 8px; border-radius: 50%;
-      background: rgba(255, 255, 255, 0.3); cursor: pointer; transition: var(--transition);
-    }
-    .dot:hover { background: rgba(255, 255, 255, 0.6); }
-    .dot.active { width: 24px; background: #fff; border-radius: 4px; } /* Estilo Pílula */
-    
-    /* Setas (Ocultas por padrão, aparecem no hover do PC) */
     .slider-btn {
-      position: absolute; top: 50%; transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255,255,255,0.1);
-      color: #fff; width: 44px; height: 44px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; z-index: 10; backdrop-filter: blur(4px);
-      font-size: 1.2rem; opacity: 0; transition: var(--transition);
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: var(--transition);
+      backdrop-filter: blur(4px);
+      font-size: 1.2rem;
     }
-    .slider-wrapper:hover .slider-btn { opacity: 1; }
-    .slider-btn:hover { background: var(--text-primary); color: var(--bg-base); transform: translateY(-50%) scale(1.1); }
-    .slider-btn.prev { left: 1rem; }
-    .slider-btn.next { right: 1rem; }
+    .slider-btn:hover {
+      background: var(--text-primary);
+      color: var(--bg-base);
+    }
+    .slider-btn.prev { left: 0.5rem; }
+    .slider-btn.next { right: 0.5rem; }
 
-    /* =========================================
-       HERO SECTION (HOME)
-       ========================================= */
+    /* Hero Section */
     .hero {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; 
-      padding: 6rem 0; min-height: 85vh; align-items: center;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; padding: 5rem 0;
+      align-items: center; border-bottom: 1px solid var(--border-light);
     }
-    .hero-media { width: 100%; aspect-ratio: 16/9; }
-    .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 700; line-height: 1.1; margin-bottom: 1.5rem; letter-spacing: -1px; }
-    .hero-content p { color: var(--text-secondary); font-size: 1.125rem; margin-bottom: 2.5rem; max-width: 90%; }
-    
+    .hero-media {
+      width: 100%; aspect-ratio: 16/9;
+      border: 1px solid var(--border-light); border-radius: 12px;
+      overflow: hidden; box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+    .hero-content h1 { font-size: 2.75rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.1; }
+    .hero-content p { color: var(--text-secondary); font-size: 1.05rem; margin-bottom: 2.5rem; }
+
+    /* Metadata Table */
     .meta-table {
-      display: grid; grid-template-columns: 100px 1fr; gap: 1rem;
-      border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light);
-      padding: 1.5rem 0; margin-bottom: 2.5rem; font-size: 0.9rem;
+      display: grid; grid-template-columns: 120px 1fr; gap: 1.25rem 0; margin-bottom: 2.5rem;
+      font-size: 0.9rem; border-top: 1px solid var(--border-light); border-bottom: 1px solid var(--border-light); padding: 1.5rem 0;
     }
-    .meta-label { color: var(--text-muted); font-weight: 600; text-transform: uppercase; font-size: 0.75rem; align-self: start; padding-top: 2px;}
+    .meta-label { color: var(--text-muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; font-size: 0.75rem; align-self: center; }
     .meta-value { color: var(--text-secondary); }
 
+    /* Buttons */
+    .hero-actions { display: flex; gap: 1rem; }
     .btn-outline {
-      background: transparent; color: var(--text-primary);
-      border: 1px solid var(--border-light); padding: 0.7rem 1.5rem;
-      border-radius: 8px; text-decoration: none; font-weight: 500;
-      transition: var(--transition); display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 1px solid var(--border-light); background: transparent; color: var(--text-primary);
+      padding: 0.75rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 500;
+      transition: var(--transition); display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
     }
-    .btn-outline:hover { border-color: var(--text-primary); background: rgba(255,255,255,0.05); }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-outline:hover { border-color: var(--text-primary); background: rgba(255, 255, 255, 0.03); }
 
-    /* =========================================
-       PORTFÓLIO (GRID DE CARDS)
-       ========================================= */
-    .section-header { padding: 6rem 0 3rem; }
-    .section-header h2 { font-size: clamp(2rem, 4vw, 2.5rem); font-weight: 600; letter-spacing: -0.5px; }
-    
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 2.5rem; margin-bottom: 6rem; }
-    
+    /* Projects Grid */
+    .section-header { padding: 5rem 0 3rem; }
+    .section-header h2 { font-size: 2rem; font-weight: 600; }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-bottom: 5rem; }
     .card {
-      background: var(--bg-surface); border: 1px solid var(--border-light);
-      border-radius: 16px; display: flex; flex-direction: column;
-      transition: var(--transition); overflow: hidden;
+      background: var(--bg-surface); border: 1px solid var(--border-light); border-radius: 12px;
+      overflow: hidden; display: flex; flex-direction: column; transition: var(--transition);
     }
-    .card:hover { border-color: var(--border-hover); transform: translateY(-8px); box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+    .card:hover { border-color: var(--border-hover); transform: translateY(-4px); }
+    .card-img { width: 100%; aspect-ratio: 16/9; border-bottom: 1px solid var(--border-light); overflow: hidden; }
+    .card-body { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .card-body h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+    .card-body p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .card .meta-table { grid-template-columns: 90px 1fr; padding: 1rem 0; margin-bottom: 1.5rem; border-bottom: none; gap: 0.75rem 0; }
     
-    /* Adaptando o carrossel para dentro do card */
-    .card .slider-wrapper { border-radius: 0; border-bottom: 1px solid var(--border-light); aspect-ratio: 16/9; box-shadow: none; height: auto; }
-    .card .slider-btn { width: 36px; height: 36px; font-size: 1rem; }
-    
-    .card-body { padding: 1.75rem; display: flex; flex-direction: column; flex-grow: 1; }
-    .card-body h3 { font-size: 1.35rem; margin-bottom: 0.75rem; }
-    .card-body p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; line-height: 1.5; }
-    
-    .tags-container { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: auto 0 1.5rem; }
-    .tag { font-size: 0.7rem; font-weight: 600; padding: 0.35rem 0.85rem; border-radius: 50px; background: rgba(16, 185, 129, 0.1); color: var(--accent); border: 1px solid rgba(16, 185, 129, 0.2); }
-    .tag.alt { background: rgba(234, 179, 8, 0.1); color: #eab308; border-color: rgba(234, 179, 8, 0.2); }
+    .tags-container { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; margin-bottom: 1.5rem; }
+    .tag { font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 50px; border: 1px solid var(--accent); color: var(--accent); }
+    .tag.alt { border-color: #eab308; color: #eab308; }
 
-    /* =========================================
-       MODAIS (POP-UPS DOS PROJETOS)
-       ========================================= */
+    /* Modal System */
     .modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(10px);
+      background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px);
       display: flex; align-items: center; justify-content: center;
-      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-      z-index: 9999; padding: 1.5rem;
+      opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+      z-index: 1000; padding: 1rem;
     }
     .modal:target { opacity: 1; pointer-events: auto; }
     .modal-content {
-      background: var(--bg-surface); border: 1px solidCriei uma estrutura completa em um único arquivo (HTML, CSS e JavaScript juntos) para facilitar. O layout foi totalmente refatorado com um visual moderno (Glassmorphism), totalmente responsivo (adapta-se ao celular e PC) e com o sistema de slider manual e automático a cada 10 segundos.
+      background: var(--bg-surface); border: 1px solid var(--border-light);
+      border-radius: 12px; width: 100%; max-width: 900px; max-height: 90vh;
+      overflow-y: auto; position: relative; padding: 2rem;
+    }
+    .modal-close {
+      position: absolute; top: 1.5rem; right: 1.5rem; color: var(--text-secondary);
+      text-decoration: none; font-size: 1.5rem; line-height: 1; transition: var(--transition);
+    }
+    .modal-close:hover { color: var(--text-primary); }
+    .modal-media {
+      width: 100%; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden;
+      margin-bottom: 1.5rem; border: 1px solid var(--border-light);
+    }
 
-Salve o código abaixo como um arquivo `index.html` e abra no seu navegador.
-
-```html
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Low City - Login</title>
-    <link href="[https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap](https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap)" rel="stylesheet">
-    <style>
-        /* Variáveis de Cores e Estilo */
-        :root {
-            --primary-green: #39ff14;
-            --bg-dark: #0a0a0a;
-            --text-light: #f4f4f4;
-            --glass-bg: rgba(15, 15, 15, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        body, html {
-            width: 100%;
-            height: 100vh;
-            overflow: hidden;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        /* Container Principal do Slider */
-        .slider-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Imagens de Fundo do Slider */
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            transition: opacity 1s ease-in-out;
-            background-size: cover;
-            background-position: center;
-            z-index: 1;
-        }
-        .slide.active {
-            opacity: 1;
-        }
-
-        /* Imagens de placeholder (Substitua pelas suas) */
-        .slide:nth-child(1) { background-image: url('[https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop](https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=2070&auto=format&fit=crop)'); }
-        .slide:nth-child(2) { background-image: url('[https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=2070&auto=format&fit=crop](https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=2070&auto=format&fit=crop)'); }
-        .slide:nth-child(3) { background-image: url('[https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=2019&auto=format&fit=crop](https://images.unsplash.com/photo-1605901309584-818e25960b8f?q=80&w=2019&auto=format&fit=crop)'); }
-
-        /* Overlay escuro para destacar a UI */
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.1) 100%);
-            z-index: 2;
-        }
-
-        /* Interface do Usuário (UI) */
-        .ui-wrapper {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 3;
-            display: flex;
-            padding: 2rem 5%;
-            justify-content: space-between;
-        }
-
-        /* Painel Lateral Esquerdo (Login e Novidades) */
-        .sidebar {
-            width: 100%;
-            max-width: 450px;
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-            height: 100%;
-            overflow-y: auto; /* Para telas menores */
-            padding-right: 1rem;
-        }
-
-        /* Scrollbar customizada */
-        .sidebar::-webkit-scrollbar { width: 6px; }
-        .sidebar::-webkit-scrollbar-thumb { background: var(--primary-green); border-radius: 4px; }
-
-        .slide-counter {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            width: fit-content;
-            backdrop-filter: blur(10px);
-        }
-
-        .header .logo {
-            color: var(--primary-green);
-            font-size: 3rem;
-            font-weight: 800;
-            font-style: italic;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
-            margin-bottom: 0.5rem;
-        }
-
-        .header h1 {
-            font-size: 1.5rem;
-            margin-bottom: 0.2rem;
-        }
-
-        .header p {
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        /* Formulário de Login */
-        .login-section h2 {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
-        }
-        .login-section p {
-            font-size: 0.8rem;
-            color: #888;
-            margin-bottom: 1rem;
-        }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 1rem;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem;
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            outline: none;
-            transition: border-color 0.3s;
-            backdrop-filter: blur(10px);
-        }
-
-        .input-group input:focus {
-            border-color: var(--primary-green);
-        }
-
-        .input-icon {
-            position: absolute;
-            top: 50%;
-            left: 1rem;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-            fill: #aaa;
-        }
-
-        .btn-submit {
-            width: 100%;
-            padding: 1rem;
-            background: white;
-            color: black;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-transform: uppercase;
-        }
-
-        .btn-submit:hover {
-            background: var(--primary-green);
-            box-shadow: 0 0 15px rgba(57, 255, 20, 0.4);
-        }
-
-        /* Seção de Novidades */
-        .news-section {
-            margin-top: 1rem;
-        }
-        .news-section h3 {
-            font-size: 1.1rem;
-            margin-bottom: 1rem;
-        }
-        .news-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            border-radius: 12px;
-            padding: 1rem;
-            backdrop-filter: blur(10px);
-        }
-        .news-img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        .news-card h4 {
-            font-size: 1rem;
-            margin-bottom: 0.5rem;
-        }
-        .news-card p {
-            font-size: 0.75rem;
-            color: #aaa;
-            line-height: 1.4;
-        }
-
-        /* Personagem e Controles da Direita */
-        .right-panel {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: flex-end;
-            position: relative;
-        }
-
-        .character-img {
-            height: 85vh;
-            max-width: 100%;
-            object-fit: contain;
-            pointer-events: none; /* Para não atrapalhar cliques */
-        }
-
-        /* Pontos de Navegação do Slider */
-        .slider-dots {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 2rem;
-            margin-right: 2rem;
-        }
-
-        .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s;
-        }
-
-        .dot.active {
-            width: 30px;
-            border-radius: 10px;
-            background: white;
-        }
-
-        /* Responsividade para Celulares e Tablets */
-        @media (max-width: 900px) {
-            .ui-wrapper {
-                justify-content: center;
-                padding: 1rem;
-            }
-            .sidebar {
-                max-width: 100%;
-                background: rgba(0, 0, 0, 0.6);
-                padding: 2rem;
-                border-radius: 16px;
-                backdrop-filter: blur(15px);
-            }
-            .right-panel {
-                display: none; /* Esconde o personagem no celular para focar no login */
-            }
-            .overlay {
-                background: rgba(0,0,0,0.7); /* Fundo mais escuro no mobile */
-            }
-            /* Move os pontos do slider para o centro no mobile */
-            .slider-dots {
-                position: absolute;
-                bottom: 10px;
-                left: 50%;
-                transform: translateX(-50%);
-                margin: 0;
-            }
-        }
-    </style>
+    /* Process Section & Footer */
+    .process-section { border-top: 1px solid var(--border-light); padding: 5rem 0; }
+    .process-title { font-size: 2.25rem; margin-bottom: 4rem; max-width: 800px; }
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; border-top: 1px solid var(--border-light); padding-top: 2rem; }
+    .step-number { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; display: block; }
+    .process-step h4 { font-size: 1.25rem; margin-bottom: 0.75rem; }
+    .process-step p { color: var(--text-secondary); font-size: 0.95rem; }
+    .contact-section { background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 6rem 0 3rem; text-align: center; }
+    .contact-section h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    .contact-section p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem; }
+    .footer-bottom { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.85rem; }
+  </style>
 </head>
 <body>
 
-    <div class="slider-container">
-        <!-- Fundo do Slider -->
-        <div class="slide active"></div>
-        <div class="slide"></div>
-        <div class="slide"></div>
-        
-        <div class="overlay"></div>
+  <!-- Menu -->
+  <header>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="#home" class="brand">Perry&trade;</a>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#termos">Termos</a>
+      </nav>
+      <a href="#contato" class="btn-login">Contato</a>
+    </div>
+  </header>
 
-        <!-- Conteúdo da UI -->
-        <div class="ui-wrapper">
-            
-            <!-- Coluna Esquerda -->
-            <div class="sidebar">
-                <div class="slide-counter"><span id="current-slide-num">1</span> / 3</div>
-                
-                <div class="header">
-                    <div class="logo">LOW CITY</div>
-                    <h1>Olá, Jhonathas!</h1>
-                    <p>É muito bom vê-lo em nosso servidor!</p>
-                </div>
-
-                <div class="login-section">
-                    <h2>FAÇA LOGIN</h2>
-                    <p>Preencha com os seus dados para acessar sua conta. (usuário ou e-mail)</p>
-                    
-                    <div class="input-group">
-                        <svg class="input-icon" viewBox="0 0 24 24">
-                            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
-                        </svg>
-                        <input type="text" placeholder="Jhonathas">
-                    </div>
-                    
-                    <button class="btn-submit">Continuar</button>
-                </div>
-
-                <div class="news-section">
-                    <h3>NOVIDADES</h3>
-                    <div class="news-card">
-                        <img src="[https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop](https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop)" alt="Carro verde" class="news-img">
-                        <h4>Mudança nos veículos</h4>
-                        <p>O sistema de física e dirigibilidade dos veículos foi completamente reestruturado para proporcionar uma experiência mais realista e responsiva durante as perseguições.</p>
-                    </div>
-                </div>
+  <main class="container">
+    
+    <!-- Hero Section (HOME) -->
+    <section id="home" class="hero">
+      <div class="hero-media">
+        <!-- CARROSSEL -->
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-hero', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-hero">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Imagem Projeto"></div>
+            <div class="slide">
+              <video autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>
             </div>
-
-            <!-- Coluna Direita (Personagem e Controles) -->
-            <div class="right-panel">
-                <!-- Imagem do personagem transparente (Substitua pelo caminho correto) -->
-                <img src="[https://i.imgur.com/u5jQj3w.png](https://i.imgur.com/u5jQj3w.png)" alt="Personagem" class="character-img">
-                
-                <div class="slider-dots">
-                    <div class="dot active" onclick="manualSlide(0)"></div>
-                    <div class="dot" onclick="manualSlide(1)"></div>
-                    <div class="dot" onclick="manualSlide(2)"></div>
-                </div>
-            </div>
-
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-hero', 1)">&#10095;</button>
         </div>
+      </div>
+      
+      <div class="hero-content">
+        <h1>Sistema Avançado de Tunagem</h1>
+        <p>Interface interativa acoplada a uma arquitetura de alta performance com salvamento relacional em MySQL, garantindo a persistência exata de cada modificação do veículo.</p>
+        
+        <div class="meta-table">
+          <div class="meta-label">Tipologia</div>
+          <div class="meta-value">Autenticação &middot; Carros &middot; Site &middot; Roleplay</div>
+          <div class="meta-label">Indústria</div>
+          <div class="meta-value">MTA:SA &middot; SITE</div>
+          <div class="meta-label">Serviços</div>
+          <div class="meta-value">Arquitetura de produto &middot; Desenvolvimento Web &middot; PerryDev</div>
+        </div>
+
+        <div class="hero-actions">
+          <a href="#modal-destaque" class="btn-outline">Ver projeto &rarr;</a>
+          <a href="#contato" class="btn-outline">Encomendar um projeto &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grid de Projetos (PORTFÓLIO) -->
+    <section id="portfolio" class="section-header">
+      <h2>Outras entregas selecionadas</h2>
+    </section>
+
+    <div class="projects-grid">
+      
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="card-img">
+          <div class="slider-container">
+            <button class="slider-btn prev" onclick="moveSlide('slider-c1', -1)">&#10094;</button>
+            <div class="slider-track" id="slider-c1">
+              <div class="slide"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=600&q=80" alt="Img"></div>
+              <div class="slide"><video autoplay loop muted playsinline><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+            </div>
+            <button class="slider-btn next" onclick="moveSlide('slider-c1', 1)">&#10095;</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Sistema de Garagem & Frota</h3>
+          <p>Gestão centralizada de veículos com requisições assíncronas, controle de vagas e spawn otimizado.</p>
+          <div class="meta-table">
+            <div class="meta-label">Tipologia</div><div class="meta-value">Veículos &middot; Back-end</div>
+            <div class="meta-label">Indústria</div><div class="meta-value">MTA:SA &middot; LUA</div>
+          </div>
+          <div class="tags-container"><span class="tag">SISTEMA</span><span class="tag alt">DESIGN DO CLIENTE</span></div>
+          <a href="#modal-projeto-1" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="card-img">
+          <div class="slider-container">
+            <button class="slider-btn prev" onclick="moveSlide('slider-c2', -1)">&#10094;</button>
+            <div class="slider-track" id="slider-c2">
+              <div class="slide"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=600&q=80" alt="Img"></div>
+              <div class="slide"><video autoplay loop muted playsinline><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+            </div>
+            <button class="slider-btn next" onclick="moveSlide('slider-c2', 1)">&#10095;</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>Sistema de Login & Loadscreen</h3>
+          <p>Tela de autenticação fluida com carregamento de ativos em segundo plano e validação de credenciais.</p>
+          <div class="meta-table">
+            <div class="meta-label">Tipologia</div><div class="meta-value">Autenticação &middot; Exclusividade</div>
+            <div class="meta-label">Indústria</div><div class="meta-value">MTA:SA &middot; LUA</div>
+          </div>
+          <div class="tags-container"><span class="tag">SISTEMA</span><span class="tag alt">DESIGN DO CLIENTE</span></div>
+          <a href="#modal-projeto-2" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="card-img">
+          <div class="slider-container">
+            <button class="slider-btn prev" onclick="moveSlide('slider-c3', -1)">&#10094;</button>
+            <div class="slider-track" id="slider-c3">
+              <div class="slide"><img src="https://images.unsplash.com/photo-1618641986557-1ecd230959aa?auto=format&fit=crop&w=600&q=80" alt="Img"></div>
+              <div class="slide"><video autoplay loop muted playsinline><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+            </div>
+            <button class="slider-btn next" onclick="moveSlide('slider-c3', 1)">&#10095;</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <h3>HUD Interativa & Telemetria</h3>
+          <p>Interface gráfica de alta frequência para monitoramento de velocímetro, status de componentes e alertas.</p>
+          <div class="meta-table">
+            <div class="meta-label">Tipologia</div><div class="meta-value">Interface &middot; Dashboard</div>
+            <div class="meta-label">Indústria</div><div class="meta-value">MTA:SA</div>
+          </div>
+          <div class="tags-container"><span class="tag">SISTEMA</span><span class="tag alt">DESIGN DO CLIENTE</span></div>
+          <a href="#modal-projeto-3" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
+        </div>
+      </div>
+
     </div>
 
-    <script>
-        let currentSlideIndex = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.dot');
-        const counterNum = document.getElementById('current-slide-num');
-        let autoSlideInterval;
+    <!-- Serviços -->
+    <section id="servicos" class="process-section">
+      <h2 class="process-title">Do briefing à implementação com previsibilidade</h2>
+      <div class="process-grid">
+        <div class="process-step">
+          <span class="step-number">01</span>
+          <h4>Estratégia</h4>
+          <p>Mapeamos o objetivo do produto, escopo técnico e critérios claros de sucesso, seja para scripts MTA, sites ou sistemas completos.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-number">02</span>
+          <h4>Produção</h4>
+          <p>Desenvolvimento em ciclos curtos com checkpoints visuais e funcionais para validar interface, lógica e performance em cada entrega.</p>
+        </div>
+        <div class="process-step">
+          <span class="step-number">03</span>
+          <h4>Entrega</h4>
+          <p>Implementação assistida, documentação objetiva e ajustes finais para a sua equipe operar o projeto com segurança e previsibilidade.</p>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        // Função principal para mudar o slide
-        function showSlide(index) {
-            // Remove as classes ativas
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
+  <!-- Footer -->
+  <footer id="contato" class="contact-section">
+    <div class="container">
+      <h2>Seu próximo projeto pode ser o destaque da próxima vitrine.</h2>
+      <p>Se você precisa de scripts MTA, sites ou sistemas completos com execução técnica forte e apresentação profissional, vamos estruturar sua encomenda do briefing à implementação.</p>
+      <a href="mailto:seuemail@exemplo.com" class="btn-outline">Solicitar projeto &rarr;</a>
+      
+      <div id="termos" class="footer-bottom">
+        &copy; 2026 Perry&trade; Desenvolvedor. Todos os direitos reservados. <br>
+        <a href="#" style="color: var(--text-muted); text-decoration: none; margin-top: 10px; display: inline-block;">Termos de Serviço e Uso de Scripts</a>
+      </div>
+    </div>
+  </footer>
 
-            // Aplica as classes ativas no índice atual
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            
-            // Atualiza o contador lá no topo
-            counterNum.innerText = index + 1;
-        }
+  <!-- ========================================== -->
+  <!-- MODAIS COM CARROSSEL (JANELAS DOS PROJETOS)-->
+  <!-- ========================================== -->
 
-        // Passa para o próximo slide
-        function nextSlide() {
-            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
-            showSlide(currentSlideIndex);
-        }
+  <div id="modal-destaque" class="modal">
+    <div class="modal-content">
+      <a href="#home" class="modal-close">&times;</a>
+      <h2>Sistema Avançado de Tunagem</h2>
+      <p style="color: var(--text-secondary); margin: 1rem 0 2rem;">Visualização detalhada do projeto em funcionamento.</p>
+      <div class="modal-media">
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-m0', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-m0">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80" alt="Img"></div>
+            <div class="slide"><video autoplay loop muted playsinline controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-m0', 1)">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        // Disparado ao clicar na bolinha manualmente
-        function manualSlide(index) {
-            currentSlideIndex = index;
-            showSlide(currentSlideIndex);
-            resetAutoSlide(); // Reinicia o timer para não pular rápido demais após o clique
-        }
+  <div id="modal-projeto-1" class="modal">
+    <div class="modal-content">
+      <a href="#portfolio" class="modal-close">&times;</a>
+      <h2>Sistema de Garagem & Frota</h2>
+      <p style="color: var(--text-secondary); margin: 1rem 0 2rem;">Controle centralizado de veículos com persistência de dados.</p>
+      <div class="modal-media">
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-m1', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-m1">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80" alt="Img"></div>
+            <div class="slide"><video autoplay loop muted playsinline controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-m1', 1)">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        // Inicia o loop automático de 10 segundos
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(nextSlide, 10000);
-        }
+  <div id="modal-projeto-2" class="modal">
+    <div class="modal-content">
+      <a href="#portfolio" class="modal-close">&times;</a>
+      <h2>Sistema de Login & Loadscreen</h2>
+      <p style="color: var(--text-secondary); margin: 1rem 0 2rem;">Tela de autenticação e validação de credenciais.</p>
+      <div class="modal-media">
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-m2', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-m2">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1000&q=80" alt="Img"></div>
+            <div class="slide"><video autoplay loop muted playsinline controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-m2', 1)">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        // Reseta o contador (útil quando o usuário clica manualmente)
-        function resetAutoSlide() {
-            clearInterval(autoSlideInterval);
-            startAutoSlide();
-        }
+  <div id="modal-projeto-3" class="modal">
+    <div class="modal-content">
+      <a href="#portfolio" class="modal-close">&times;</a>
+      <h2>HUD Interativa & Telemetria</h2>
+      <p style="color: var(--text-secondary); margin: 1rem 0 2rem;">Interface para monitoramento e alertas veiculares.</p>
+      <div class="modal-media">
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-m3', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-m3">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1618641986557-1ecd230959aa?auto=format&fit=crop&w=1000&q=80" alt="Img"></div>
+            <div class="slide"><video autoplay loop muted playsinline controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-m3', 1)">&#10095;</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-        // Inicia o slider assim que a página carrega
-        startAutoSlide();
-    </script>
+  <!-- Script Responsável por Passar pro Lado -->
+  <script>
+    function moveSlide(trackId, direction) {
+      const track = document.getElementById(trackId);
+      // Pega a largura exata de 1 slide na tela no momento
+      const slideWidth = track.clientWidth; 
+      // Rola pro lado com animação suave nativa
+      track.scrollBy({ left: slideWidth * direction, behavior: 'smooth' });
+    }
+  </script>
+
 </body>
 </html>
