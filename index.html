@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Perry | Desenvolvedor MTA</title>
+  <title>Perry | Desenvolvedor</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
@@ -11,12 +11,14 @@
       --bg-base: #000000;
       --bg-surface: #0a0a0a;
       --bg-card: #111111;
-      --border-light: #222222;
-      --text-primary: #f4f4f5;
+      --border-light: #27272a;
+      --border-hover: #3f3f46;
+      --text-primary: #f8fafc;
       --text-secondary: #a1a1aa;
       --text-muted: #52525b;
       --accent: #10b981;
       --accent-hover: #059669;
+      --transition: all 0.3s ease;
     }
 
     * {
@@ -29,24 +31,26 @@
       background-color: var(--bg-base);
       color: var(--text-primary);
       font-family: 'Inter', sans-serif;
-      line-height: 1.5;
+      line-height: 1.6;
       -webkit-font-smoothing: antialiased;
     }
 
     .container {
-      max-width: 1400px;
+      width: 100%;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
     }
 
-    /* Navegação */
+    /* Header */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 1.5rem 0;
       border-bottom: 1px solid var(--border-light);
-      background: var(--bg-base);
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
       position: sticky;
       top: 0;
       z-index: 100;
@@ -56,6 +60,8 @@
       font-size: 1.25rem;
       font-weight: 700;
       letter-spacing: -0.5px;
+      color: var(--text-primary);
+      text-decoration: none;
     }
 
     .nav-links {
@@ -68,7 +74,7 @@
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
-      transition: color 0.2s;
+      transition: var(--transition);
     }
 
     .nav-links a:hover {
@@ -83,14 +89,20 @@
       text-decoration: none;
       font-weight: 600;
       font-size: 0.9rem;
+      transition: var(--transition);
     }
 
-    /* Hero Section - Destaque */
+    .btn-login:hover {
+      background: #e2e8f0;
+      transform: translateY(-1px);
+    }
+
+    /* Hero Section */
     .hero {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
-      padding: 4rem 0;
+      padding: 5rem 0;
       align-items: center;
       border-bottom: 1px solid var(--border-light);
     }
@@ -100,34 +112,38 @@
       aspect-ratio: 16/9;
       background: var(--bg-card);
       border: 1px solid var(--border-light);
-      border-radius: 8px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--text-muted);
       font-size: 0.9rem;
+      overflow: hidden;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
     }
 
     .hero-content h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
+      font-size: 2.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      letter-spacing: -1px;
     }
 
     .hero-content p {
       color: var(--text-secondary);
-      font-size: 1rem;
-      margin-bottom: 2rem;
-      max-width: 90%;
+      font-size: 1.05rem;
+      margin-bottom: 2.5rem;
+      max-width: 95%;
     }
 
-    /* Tabela de Metadados (Estilo SquashCodes) */
+    /* Metadata Table (Hero) */
     .meta-table {
       display: grid;
       grid-template-columns: 120px 1fr;
-      gap: 1rem 0;
+      gap: 1.25rem 0;
       margin-bottom: 2.5rem;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       border-top: 1px solid var(--border-light);
       border-bottom: 1px solid var(--border-light);
       padding: 1.5rem 0;
@@ -138,15 +154,13 @@
       font-weight: 600;
       letter-spacing: 1px;
       text-transform: uppercase;
+      font-size: 0.75rem;
+      align-self: center;
     }
 
     .meta-value {
       color: var(--text-secondary);
-    }
-
-    .meta-value strong {
-      color: var(--text-primary);
-      font-weight: 500;
+      font-weight: 400;
     }
 
     .hero-actions {
@@ -163,40 +177,50 @@
       text-decoration: none;
       font-size: 0.9rem;
       font-weight: 500;
-      transition: all 0.2s;
-      display: flex;
+      transition: var(--transition);
+      display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
     }
 
     .btn-outline:hover {
       border-color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.03);
     }
 
-    /* Grid de Projetos */
+    /* Projects Grid */
     .section-header {
-      padding: 4rem 0 2rem;
+      padding: 5rem 0 3rem;
     }
 
     .section-header h2 {
       font-size: 2rem;
       font-weight: 600;
+      letter-spacing: -0.5px;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
-      margin-bottom: 4rem;
+      margin-bottom: 5rem;
     }
 
     .card {
       background: var(--bg-surface);
       border: 1px solid var(--border-light);
-      border-radius: 8px;
+      border-radius: 12px;
       overflow: hidden;
       display: flex;
       flex-direction: column;
+      transition: var(--transition);
+    }
+
+    .card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .card-img {
@@ -221,6 +245,7 @@
     .card-body h3 {
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
+      font-weight: 600;
     }
 
     .card-body p {
@@ -234,10 +259,12 @@
       padding: 1rem 0;
       margin-bottom: 1.5rem;
       border-bottom: none;
+      gap: 0.75rem 0;
     }
 
     .tags-container {
       display: flex;
+      flex-wrap: wrap;
       gap: 0.5rem;
       margin-top: auto;
       margin-bottom: 1.5rem;
@@ -252,14 +279,16 @@
       color: var(--accent);
       letter-spacing: 0.5px;
       text-transform: uppercase;
+      background: rgba(16, 185, 129, 0.05);
     }
 
     .tag.alt {
       border-color: #eab308;
       color: #eab308;
+      background: rgba(234, 179, 8, 0.05);
     }
 
-    /* Processo / Workflow */
+    /* Process Section */
     .process-section {
       border-top: 1px solid var(--border-light);
       padding: 5rem 0;
@@ -267,24 +296,22 @@
 
     .process-title {
       font-size: 2.25rem;
-      margin-bottom: 3rem;
+      margin-bottom: 4rem;
       max-width: 800px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
     }
 
     .process-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
       border-top: 1px solid var(--border-light);
+      padding-top: 2rem;
     }
 
     .process-step {
-      padding: 2rem 2rem 2rem 0;
-      border-right: 1px solid var(--border-light);
-    }
-
-    .process-step:last-child {
-      border-right: none;
-      padding-right: 0;
+      padding-right: 1rem;
     }
 
     .step-number {
@@ -297,7 +324,8 @@
 
     .process-step h4 {
       font-size: 1.25rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
     }
 
     .process-step p {
@@ -305,34 +333,46 @@
       font-size: 0.95rem;
     }
 
-    /* Contato / Footer */
+    /* CTA / Footer */
     .contact-section {
       background: var(--bg-surface);
       border-top: 1px solid var(--border-light);
-      padding: 5rem 0;
+      padding: 6rem 0;
       text-align: center;
     }
 
     .contact-section h2 {
-      font-size: 3rem;
-      font-weight: 500;
-      margin-bottom: 1rem;
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
       letter-spacing: -1px;
     }
     
     .contact-section p {
       color: var(--text-secondary);
       max-width: 600px;
-      margin: 0 auto 3rem;
+      margin: 0 auto 2.5rem;
+      font-size: 1.05rem;
     }
 
+    /* Responsividade */
+    @media (max-width: 992px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        padding: 3rem 0;
+      }
+      .nav-links {
+        display: none; /* Simplificação mobile */
+      }
+    }
   </style>
 </head>
 <body>
 
   <header>
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
-      <div class="brand">Perry&trade;</div>
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+      <a href="#" class="brand">Perry&trade;</a>
       <nav class="nav-links">
         <a href="#">Home</a>
         <a href="#">Portfólio</a>
@@ -348,7 +388,7 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero-image">
-        [ Inserir GIF/Vídeo do Sistema de Tunagem aqui ]
+        [ Inserir GIF/Vídeo do Projeto Aqui ]
       </div>
       
       <div class="hero-content">
@@ -357,23 +397,23 @@
         
         <div class="meta-table">
           <div class="meta-label">Tipologia</div>
-          <div class="meta-value">Modificação de Veículos &middot; Interface &middot; Back-end</div>
+          <div class="meta-value">Autenticação &middot; Carros &middot; Site &middot; Roleplay</div>
           
           <div class="meta-label">Indústria</div>
-          <div class="meta-value">MTA:SA &middot; LUA &middot; MYSQL</div>
+          <div class="meta-value">MTA:SA &middot; SITE</div>
           
           <div class="meta-label">Serviços</div>
-          <div class="meta-value">Arquitetura de Dados &middot; Desenvolvimento UI/UX &middot; Otimização Server-side</div>
+          <div class="meta-value">Arquitetura de produto &middot; Desenvolvimento Web &middot; PerryDev</div>
         </div>
 
         <div class="hero-actions">
-          <a href="#" class="btn-outline">Ver código-fonte &rarr;</a>
-          <a href="#" class="btn-outline">Demonstração Técnica &rarr;</a>
+          <a href="#" class="btn-outline">Ver projeto &rarr;</a>
+          <a href="#" class="btn-outline">Encomendar um projeto &rarr;</a>
         </div>
       </div>
     </section>
 
-    <!-- Outras Entregas (Grid) -->
+    <!-- Grid de Projetos -->
     <section class="section-header">
       <h2>Outras entregas selecionadas</h2>
     </section>
@@ -382,66 +422,38 @@
       
       <!-- Card 1 -->
       <div class="card">
-        <div class="card-img">[ Imagem Sistema de Garagem ]</div>
+        <div class="card-img">[ Mídia do Sistema ]</div>
         <div class="card-body">
           <h3>Sistema de Garagem & Frota</h3>
-          <p>Gestão centralizada de veículos com requisições assíncronas em MySQL, controle de vagas e spawn otimizado.</p>
+          <p>Gestão centralizada de veículos com requisições assíncronas, controle de vagas e spawn otimizado.</p>
           
           <div class="meta-table">
             <div class="meta-label">Tipologia</div>
-            <div class="meta-value">Veículos &middot; Performance &middot; Back-end</div>
+            <div class="meta-value">Veículos &middot; Back-end</div>
             
             <div class="meta-label">Indústria</div>
-            <div class="meta-value">MTA:SA &middot; MYSQL</div>
+            <div class="meta-value">MTA:SA &middot; LUA</div>
           </div>
 
           <div class="tags-container">
             <span class="tag">SISTEMA</span>
-            <span class="tag alt">BACK-END</span>
+            <span class="tag alt">DESIGN DO CLIENTE</span>
           </div>
 
-          <div class="hero-actions">
-            <a href="#" class="btn-outline" style="width: 100%; justify-content: center;">Ver projeto &rarr;</a>
-          </div>
+          <a href="#" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
         </div>
       </div>
 
       <!-- Card 2 -->
       <div class="card">
-        <div class="card-img">[ Imagem Sistema de Login ]</div>
+        <div class="card-img">[ Mídia do Sistema ]</div>
         <div class="card-body">
           <h3>Sistema de Login & Loadscreen</h3>
-          <p>Tela de autenticação fluida com carregamento de ativos em segundo plano, criptografia de dados e validação.</p>
+          <p>Tela de autenticação fluida com carregamento de ativos em segundo plano e validação de credenciais.</p>
           
           <div class="meta-table">
             <div class="meta-label">Tipologia</div>
-            <div class="meta-value">Autenticação &middot; Exclusividade &middot; Interface</div>
-            
-            <div class="meta-label">Indústria</div>
-            <div class="meta-value">MTA:SA &middot; CEF</div>
-          </div>
-
-          <div class="tags-container">
-            <span class="tag">SISTEMA</span>
-            <span class="tag alt">UI/UX</span>
-          </div>
-
-          <div class="hero-actions">
-            <a href="#" class="btn-outline" style="width: 100%; justify-content: center;">Ver projeto &rarr;</a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div class="card">
-        <div class="card-img">[ Imagem HUD ]</div>
-        <div class="card-body">
-          <h3>HUD Interativa & Telemetria</h3>
-          <p>Interface gráfica de alta frequência para monitoramento de velocímetro, status de componentes e alertas.</p>
-          
-          <div class="meta-table">
-            <div class="meta-label">Tipologia</div>
-            <div class="meta-value">Interface &middot; Dashboard &middot; DX</div>
+            <div class="meta-value">Autenticação &middot; Exclusividade</div>
             
             <div class="meta-label">Indústria</div>
             <div class="meta-value">MTA:SA</div>
@@ -449,18 +461,40 @@
 
           <div class="tags-container">
             <span class="tag">SISTEMA</span>
-            <span class="tag alt">FRONT-END</span>
+            <span class="tag alt">DESIGN DO CLIENTE</span>
           </div>
 
-          <div class="hero-actions">
-            <a href="#" class="btn-outline" style="width: 100%; justify-content: center;">Ver projeto &rarr;</a>
+          <a href="#" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="card-img">[ Mídia do Sistema ]</div>
+        <div class="card-body">
+          <h3>HUD Interativa & Telemetria</h3>
+          <p>Interface gráfica de alta frequência para monitoramento de velocímetro, status de componentes e alertas.</p>
+          
+          <div class="meta-table">
+            <div class="meta-label">Tipologia</div>
+            <div class="meta-value">Interface &middot; Dashboard</div>
+            
+            <div class="meta-label">Indústria</div>
+            <div class="meta-value">MTA:SA &middot; CEF</div>
           </div>
+
+          <div class="tags-container">
+            <span class="tag">SISTEMA</span>
+            <span class="tag alt">DESIGN DO CLIENTE</span>
+          </div>
+
+          <a href="#" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
         </div>
       </div>
 
     </div>
 
-    <!-- Processo -->
+    <!-- Processo de Encomenda -->
     <section class="process-section">
       <h2 class="process-title">Do briefing à implementação com previsibilidade</h2>
       
@@ -468,17 +502,17 @@
         <div class="process-step">
           <span class="step-number">01</span>
           <h4>Estratégia</h4>
-          <p>Mapeamos objetivo de produto, escopo técnico e critérios claros de sucesso, estruturando modelagem de tabelas e lógica de comunicação.</p>
+          <p>Mapeamos o objetivo do produto, escopo técnico e critérios claros de sucesso, seja para scripts MTA, sites ou sistemas completos.</p>
         </div>
         <div class="process-step">
           <span class="step-number">02</span>
           <h4>Produção</h4>
-          <p>Desenvolvimento em ciclos curtos focando em baixo consumo de processamento (RAM/CPU) para validar UX, lógica e performance em cada entrega.</p>
+          <p>Desenvolvimento em ciclos curtos com checkpoints visuais e funcionais para validar UX, lógica e performance em cada entrega.</p>
         </div>
         <div class="process-step">
           <span class="step-number">03</span>
           <h4>Entrega</h4>
-          <p>Implementação assistida, documentação objetiva e ajustes finais para operar o projeto com segurança e estabilidade no servidor host.</p>
+          <p>Implementação assistida, documentação objetiva e ajustes finais para a sua equipe operar o projeto com segurança e previsibilidade.</p>
         </div>
       </div>
     </section>
@@ -488,9 +522,9 @@
   <!-- CTA / Footer -->
   <footer class="contact-section">
     <div class="container">
-      <h2>Seu próximo projeto estruturado.</h2>
-      <p>Se você precisa de scripts MTA, sistemas complexos com execução técnica forte e apresentação profissional, vamos estruturar sua encomenda do briefing à implementação.</p>
-      <a href="#" class="btn-outline" style="display: inline-flex;">Solicitar projeto &rarr;</a>
+      <h2>Seu próximo projeto pode ser o destaque da próxima vitrine.</h2>
+      <p>Se você precisa de scripts MTA, sites ou sistemas completos com execução técnica forte e apresentação profissional, vamos estruturar sua encomenda do briefing à implementação.</p>
+      <a href="#" class="btn-outline">Solicitar projeto &rarr;</a>
     </div>
   </footer>
 
