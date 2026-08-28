@@ -27,6 +27,11 @@
       box-sizing: border-box;
     }
 
+    html {
+      /* Habilita o deslizamento suave ao clicar nos links do menu */
+      scroll-behavior: smooth;
+    }
+
     body {
       background-color: var(--bg-base);
       color: var(--text-primary);
@@ -116,10 +121,16 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
-      font-size: 0.9rem;
       overflow: hidden;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Configuração perfeita para o vídeo e imagem preencherem o espaço */
+    .hero-image video,
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Faz a imagem/vídeo cobrir a div sem esticar */
     }
 
     .hero-content h1 {
@@ -137,7 +148,7 @@
       max-width: 95%;
     }
 
-    /* Metadata Table (Hero) */
+    /* Metadata Table */
     .meta-table {
       display: grid;
       grid-template-columns: 120px 1fr;
@@ -231,8 +242,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--text-muted);
-      font-size: 0.8rem;
+      overflow: hidden;
     }
 
     .card-body {
@@ -337,7 +347,7 @@
     .contact-section {
       background: var(--bg-surface);
       border-top: 1px solid var(--border-light);
-      padding: 6rem 0;
+      padding: 6rem 0 3rem;
       text-align: center;
     }
 
@@ -354,6 +364,14 @@
       margin: 0 auto 2.5rem;
       font-size: 1.05rem;
     }
+    
+    .footer-bottom {
+      margin-top: 5rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border-light);
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
 
     /* Responsividade */
     @media (max-width: 992px) {
@@ -363,7 +381,7 @@
         padding: 3rem 0;
       }
       .nav-links {
-        display: none; /* Simplificação mobile */
+        display: none;
       }
     }
   </style>
@@ -372,23 +390,25 @@
 
   <header>
     <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-      <a href="#" class="brand">Perry&trade;</a>
+      <a href="#home" class="brand">Perry&trade;</a>
       <nav class="nav-links">
-        <a href="#">Home</a>
-        <a href="#">Portfólio</a>
-        <a href="#">Serviços</a>
-        <a href="#">Termos</a>
+        <a href="#home">Home</a>
+        <a href="#portfolio">Portfólio</a>
+        <a href="#servicos">Serviços</a>
+        <a href="#termos">Termos</a>
       </nav>
-      <a href="#" class="btn-login">Contato</a>
+      <a href="#contato" class="btn-login">Contato</a>
     </div>
   </header>
 
   <main class="container">
     
-    <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero">
       <div class="hero-image">
-        [ Inserir GIF/Vídeo do Projeto Aqui ]
+        <video autoplay loop muted playsinline poster="https://via.placeholder.com/800x450/111111/52525b?text=Preview+do+Video">
+          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+          Seu navegador não suporta vídeos.
+        </video>
       </div>
       
       <div class="hero-content">
@@ -407,22 +427,22 @@
         </div>
 
         <div class="hero-actions">
-          <a href="#" class="btn-outline">Ver projeto &rarr;</a>
-          <a href="#" class="btn-outline">Encomendar um projeto &rarr;</a>
+          <a href="#portfolio" class="btn-outline">Ver projeto &rarr;</a>
+          <a href="#contato" class="btn-outline">Encomendar um projeto &rarr;</a>
         </div>
       </div>
     </section>
 
-    <!-- Grid de Projetos -->
-    <section class="section-header">
+    <section id="portfolio" class="section-header">
       <h2>Outras entregas selecionadas</h2>
     </section>
 
     <div class="projects-grid">
       
-      <!-- Card 1 -->
       <div class="card">
-        <div class="card-img">[ Mídia do Sistema ]</div>
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sistema de Garagem">
+        </div>
         <div class="card-body">
           <h3>Sistema de Garagem & Frota</h3>
           <p>Gestão centralizada de veículos com requisições assíncronas, controle de vagas e spawn otimizado.</p>
@@ -440,13 +460,14 @@
             <span class="tag alt">DESIGN DO CLIENTE</span>
           </div>
 
-          <a href="#" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
+          <a href="#contato" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
         </div>
       </div>
 
-      <!-- Card 2 -->
       <div class="card">
-        <div class="card-img">[ Mídia do Sistema ]</div>
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Sistema de Login">
+        </div>
         <div class="card-body">
           <h3>Sistema de Login & Loadscreen</h3>
           <p>Tela de autenticação fluida com carregamento de ativos em segundo plano e validação de credenciais.</p>
@@ -456,7 +477,7 @@
             <div class="meta-value">Autenticação &middot; Exclusividade</div>
             
             <div class="meta-label">Indústria</div>
-            <div class="meta-value">MTA:SA</div>
+            <div class="meta-value">MTA:SA &middot; LUA</div>
           </div>
 
           <div class="tags-container">
@@ -464,13 +485,14 @@
             <span class="tag alt">DESIGN DO CLIENTE</span>
           </div>
 
-          <a href="#" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
+          <a href="#contato" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
         </div>
       </div>
 
-      <!-- Card 3 -->
       <div class="card">
-        <div class="card-img">[ Mídia do Sistema ]</div>
+        <div class="card-img">
+          <img src="https://images.unsplash.com/photo-1618641986557-1ecd230959aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dashboard">
+        </div>
         <div class="card-body">
           <h3>HUD Interativa & Telemetria</h3>
           <p>Interface gráfica de alta frequência para monitoramento de velocímetro, status de componentes e alertas.</p>
@@ -480,7 +502,7 @@
             <div class="meta-value">Interface &middot; Dashboard</div>
             
             <div class="meta-label">Indústria</div>
-            <div class="meta-value">MTA:SA &middot; CEF</div>
+            <div class="meta-value">MTA:SA &middot; DX</div>
           </div>
 
           <div class="tags-container">
@@ -488,14 +510,13 @@
             <span class="tag alt">DESIGN DO CLIENTE</span>
           </div>
 
-          <a href="#" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
+          <a href="#contato" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
         </div>
       </div>
 
     </div>
 
-    <!-- Processo de Encomenda -->
-    <section class="process-section">
+    <section id="servicos" class="process-section">
       <h2 class="process-title">Do briefing à implementação com previsibilidade</h2>
       
       <div class="process-grid">
@@ -507,7 +528,7 @@
         <div class="process-step">
           <span class="step-number">02</span>
           <h4>Produção</h4>
-          <p>Desenvolvimento em ciclos curtos com checkpoints visuais e funcionais para validar UX, lógica e performance em cada entrega.</p>
+          <p>Desenvolvimento em ciclos curtos com checkpoints visuais e funcionais para validar interface, lógica e performance em cada entrega.</p>
         </div>
         <div class="process-step">
           <span class="step-number">03</span>
@@ -519,12 +540,17 @@
 
   </main>
 
-  <!-- CTA / Footer -->
-  <footer class="contact-section">
+  <footer id="contato" class="contact-section">
     <div class="container">
       <h2>Seu próximo projeto pode ser o destaque da próxima vitrine.</h2>
       <p>Se você precisa de scripts MTA, sites ou sistemas completos com execução técnica forte e apresentação profissional, vamos estruturar sua encomenda do briefing à implementação.</p>
-      <a href="#" class="btn-outline">Solicitar projeto &rarr;</a>
+      <a href="mailto:seuemail@exemplo.com" class="btn-outline">Solicitar projeto &rarr;</a>
+      
+      <div id="termos" class="footer-bottom">
+        &copy; 2026 Perry&trade; Desenvolvedor. Todos os direitos reservados. 
+        <br>
+        <a href="#" style="color: var(--text-muted); text-decoration: none; margin-top: 10px; display: inline-block;">Termos de Serviço e Uso de Scripts</a>
+      </div>
     </div>
   </footer>
 
