@@ -55,17 +55,63 @@
       padding: 0.5rem 1.5rem; border-radius: 6px; text-decoration: none; font-weight: 600; transition: var(--transition);
     }
 
-    /* Media Splitter (Imagem + Vídeo lado a lado) */
-    .split-media {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      width: 100%; height: 100%;
-      gap: 2px;
-      background: var(--bg-base);
+    /* === SISTEMA DE CARROSSEL (SLIDER) === */
+    .slider-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
-    .split-media img, .split-media video {
-      width: 100%; height: 100%; object-fit: cover;
+    .slider-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      scrollbar-width: none; /* Oculta barra no Firefox */
     }
+    .slider-track::-webkit-scrollbar {
+      display: none; /* Oculta barra no Chrome/Safari */
+    }
+    .slide {
+      flex: 0 0 100%;
+      width: 100%;
+      height: 100%;
+      scroll-snap-align: center;
+      position: relative;
+    }
+    .slide img, .slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 2;
+      transition: var(--transition);
+      backdrop-filter: blur(4px);
+      font-size: 1.2rem;
+    }
+    .slider-btn:hover {
+      background: var(--text-primary);
+      color: var(--bg-base);
+    }
+    .slider-btn.prev { left: 0.5rem; }
+    .slider-btn.next { right: 0.5rem; }
 
     /* Hero Section */
     .hero {
@@ -116,7 +162,7 @@
     .tag { font-size: 0.7rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 50px; border: 1px solid var(--accent); color: var(--accent); }
     .tag.alt { border-color: #eab308; color: #eab308; }
 
-    /* Modal System (Janelas Pop-up para os Projetos) */
+    /* Modal System */
     .modal {
       position: fixed; top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(8px);
@@ -136,19 +182,17 @@
     }
     .modal-close:hover { color: var(--text-primary); }
     .modal-media {
-      width: 100%; aspect-ratio: 21/9; border-radius: 8px; overflow: hidden;
+      width: 100%; aspect-ratio: 16/9; border-radius: 8px; overflow: hidden;
       margin-bottom: 1.5rem; border: 1px solid var(--border-light);
     }
 
-    /* Process Section */
+    /* Process Section & Footer */
     .process-section { border-top: 1px solid var(--border-light); padding: 5rem 0; }
     .process-title { font-size: 2.25rem; margin-bottom: 4rem; max-width: 800px; }
     .process-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; border-top: 1px solid var(--border-light); padding-top: 2rem; }
     .step-number { color: var(--text-muted); font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; display: block; }
     .process-step h4 { font-size: 1.25rem; margin-bottom: 0.75rem; }
     .process-step p { color: var(--text-secondary); font-size: 0.95rem; }
-
-    /* Footer */
     .contact-section { background: var(--bg-surface); border-top: 1px solid var(--border-light); padding: 6rem 0 3rem; text-align: center; }
     .contact-section h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
     .contact-section p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem; }
@@ -176,12 +220,18 @@
     <!-- Hero Section (HOME) -->
     <section id="home" class="hero">
       <div class="hero-media">
-        <!-- COMPONENTE: Imagem e Vídeo lado a lado -->
-        <div class="split-media">
-          <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=600&q=80" alt="Imagem Hero">
-          <video autoplay loop muted playsinline>
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-          </video>
+        <!-- CARROSSEL -->
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-hero', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-hero">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Imagem Projeto"></div>
+            <div class="slide">
+              <video autoplay loop muted playsinline>
+                <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-hero', 1)">&#10095;</button>
         </div>
       </div>
       
@@ -192,16 +242,13 @@
         <div class="meta-table">
           <div class="meta-label">Tipologia</div>
           <div class="meta-value">Autenticação &middot; Carros &middot; Site &middot; Roleplay</div>
-          
           <div class="meta-label">Indústria</div>
           <div class="meta-value">MTA:SA &middot; SITE</div>
-          
           <div class="meta-label">Serviços</div>
           <div class="meta-value">Arquitetura de produto &middot; Desenvolvimento Web &middot; PerryDev</div>
         </div>
 
         <div class="hero-actions">
-          <!-- Este botão agora abre o Modal do Projeto Principal -->
           <a href="#modal-destaque" class="btn-outline">Ver projeto &rarr;</a>
           <a href="#contato" class="btn-outline">Encomendar um projeto &rarr;</a>
         </div>
@@ -218,26 +265,23 @@
       <!-- Card 1 -->
       <div class="card">
         <div class="card-img">
-          <div class="split-media">
-            <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=400&q=80" alt="Img 1">
-            <video autoplay loop muted playsinline>
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            </video>
+          <div class="slider-container">
+            <button class="slider-btn prev" onclick="moveSlide('slider-c1', -1)">&#10094;</button>
+            <div class="slider-track" id="slider-c1">
+              <div class="slide"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=600&q=80" alt="Img"></div>
+              <div class="slide"><video autoplay loop muted playsinline><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+            </div>
+            <button class="slider-btn next" onclick="moveSlide('slider-c1', 1)">&#10095;</button>
           </div>
         </div>
         <div class="card-body">
           <h3>Sistema de Garagem & Frota</h3>
           <p>Gestão centralizada de veículos com requisições assíncronas, controle de vagas e spawn otimizado.</p>
-          
           <div class="meta-table">
-            <div class="meta-label">Tipologia</div>
-            <div class="meta-value">Veículos &middot; Back-end</div>
-            <div class="meta-label">Indústria</div>
-            <div class="meta-value">MTA:SA &middot; LUA</div>
+            <div class="meta-label">Tipologia</div><div class="meta-value">Veículos &middot; Back-end</div>
+            <div class="meta-label">Indústria</div><div class="meta-value">MTA:SA &middot; LUA</div>
           </div>
           <div class="tags-container"><span class="tag">SISTEMA</span><span class="tag alt">DESIGN DO CLIENTE</span></div>
-          
-          <!-- Botão que abre o modal do Projeto 1 -->
           <a href="#modal-projeto-1" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
         </div>
       </div>
@@ -245,26 +289,23 @@
       <!-- Card 2 -->
       <div class="card">
         <div class="card-img">
-          <div class="split-media">
-            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=400&q=80" alt="Img 2">
-            <video autoplay loop muted playsinline>
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            </video>
+          <div class="slider-container">
+            <button class="slider-btn prev" onclick="moveSlide('slider-c2', -1)">&#10094;</button>
+            <div class="slider-track" id="slider-c2">
+              <div class="slide"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=600&q=80" alt="Img"></div>
+              <div class="slide"><video autoplay loop muted playsinline><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+            </div>
+            <button class="slider-btn next" onclick="moveSlide('slider-c2', 1)">&#10095;</button>
           </div>
         </div>
         <div class="card-body">
           <h3>Sistema de Login & Loadscreen</h3>
           <p>Tela de autenticação fluida com carregamento de ativos em segundo plano e validação de credenciais.</p>
-          
           <div class="meta-table">
-            <div class="meta-label">Tipologia</div>
-            <div class="meta-value">Autenticação &middot; Exclusividade</div>
-            <div class="meta-label">Indústria</div>
-            <div class="meta-value">MTA:SA &middot; LUA</div>
+            <div class="meta-label">Tipologia</div><div class="meta-value">Autenticação &middot; Exclusividade</div>
+            <div class="meta-label">Indústria</div><div class="meta-value">MTA:SA &middot; LUA</div>
           </div>
           <div class="tags-container"><span class="tag">SISTEMA</span><span class="tag alt">DESIGN DO CLIENTE</span></div>
-          
-          <!-- Botão que abre o modal do Projeto 2 -->
           <a href="#modal-projeto-2" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
         </div>
       </div>
@@ -272,27 +313,23 @@
       <!-- Card 3 -->
       <div class="card">
         <div class="card-img">
-          <div class="split-media">
-            <img src="https://images.unsplash.com/photo-1618641986557-1ecd230959aa?auto=format&fit=crop&w=400&q=80" alt="Img 3">
-            <video autoplay loop muted playsinline>
-              <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-            </video>
+          <div class="slider-container">
+            <button class="slider-btn prev" onclick="moveSlide('slider-c3', -1)">&#10094;</button>
+            <div class="slider-track" id="slider-c3">
+              <div class="slide"><img src="https://images.unsplash.com/photo-1618641986557-1ecd230959aa?auto=format&fit=crop&w=600&q=80" alt="Img"></div>
+              <div class="slide"><video autoplay loop muted playsinline><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+            </div>
+            <button class="slider-btn next" onclick="moveSlide('slider-c3', 1)">&#10095;</button>
           </div>
         </div>
         <div class="card-body">
           <h3>HUD Interativa & Telemetria</h3>
           <p>Interface gráfica de alta frequência para monitoramento de velocímetro, status de componentes e alertas.</p>
-          
           <div class="meta-table">
-            <div class="meta-label">Tipologia</div>
-            <div class="meta-value">Interface &middot; Dashboard</div>
-            <div class="meta-label">Indústria</div>
-            <!-- Qualquer menção anterior a DX ou similar foi removida. Apenas MTA:SA mantido. -->
-            <div class="meta-value">MTA:SA</div>
+            <div class="meta-label">Tipologia</div><div class="meta-value">Interface &middot; Dashboard</div>
+            <div class="meta-label">Indústria</div><div class="meta-value">MTA:SA</div>
           </div>
           <div class="tags-container"><span class="tag">SISTEMA</span><span class="tag alt">DESIGN DO CLIENTE</span></div>
-          
-          <!-- Botão que abre o modal do Projeto 3 -->
           <a href="#modal-projeto-3" class="btn-outline" style="width: 100%;">Ver projeto &rarr;</a>
         </div>
       </div>
@@ -337,72 +374,91 @@
   </footer>
 
   <!-- ========================================== -->
-  <!-- ÁREA DOS MODAIS (JANELAS DOS PROJETOS) -->
+  <!-- MODAIS COM CARROSSEL (JANELAS DOS PROJETOS)-->
   <!-- ========================================== -->
 
-  <!-- Modal do Projeto Destaque -->
   <div id="modal-destaque" class="modal">
     <div class="modal-content">
       <a href="#home" class="modal-close">&times;</a>
       <h2>Sistema Avançado de Tunagem</h2>
       <p style="color: var(--text-secondary); margin: 1rem 0 2rem;">Visualização detalhada do projeto em funcionamento.</p>
-      
-      <div class="modal-media split-media">
-        <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=800&q=80" alt="Detalhe Imagem">
-        <video autoplay loop muted playsinline controls>
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
+      <div class="modal-media">
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-m0', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-m0">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&w=1000&q=80" alt="Img"></div>
+            <div class="slide"><video autoplay loop muted playsinline controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-m0', 1)">&#10095;</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal do Projeto 1 -->
   <div id="modal-projeto-1" class="modal">
     <div class="modal-content">
       <a href="#portfolio" class="modal-close">&times;</a>
       <h2>Sistema de Garagem & Frota</h2>
       <p style="color: var(--text-secondary); margin: 1rem 0 2rem;">Controle centralizado de veículos com persistência de dados.</p>
-      
-      <div class="modal-media split-media">
-        <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=800&q=80" alt="Detalhe Imagem">
-        <video autoplay loop muted playsinline controls>
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
+      <div class="modal-media">
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-m1', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-m1">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1000&q=80" alt="Img"></div>
+            <div class="slide"><video autoplay loop muted playsinline controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-m1', 1)">&#10095;</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal do Projeto 2 -->
   <div id="modal-projeto-2" class="modal">
     <div class="modal-content">
       <a href="#portfolio" class="modal-close">&times;</a>
       <h2>Sistema de Login & Loadscreen</h2>
       <p style="color: var(--text-secondary); margin: 1rem 0 2rem;">Tela de autenticação e validação de credenciais.</p>
-      
-      <div class="modal-media split-media">
-        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80" alt="Detalhe Imagem">
-        <video autoplay loop muted playsinline controls>
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
+      <div class="modal-media">
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-m2', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-m2">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=1000&q=80" alt="Img"></div>
+            <div class="slide"><video autoplay loop muted playsinline controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-m2', 1)">&#10095;</button>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- Modal do Projeto 3 -->
   <div id="modal-projeto-3" class="modal">
     <div class="modal-content">
       <a href="#portfolio" class="modal-close">&times;</a>
       <h2>HUD Interativa & Telemetria</h2>
       <p style="color: var(--text-secondary); margin: 1rem 0 2rem;">Interface para monitoramento e alertas veiculares.</p>
-      
-      <div class="modal-media split-media">
-        <img src="https://images.unsplash.com/photo-1618641986557-1ecd230959aa?auto=format&fit=crop&w=800&q=80" alt="Detalhe Imagem">
-        <video autoplay loop muted playsinline controls>
-          <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
+      <div class="modal-media">
+        <div class="slider-container">
+          <button class="slider-btn prev" onclick="moveSlide('slider-m3', -1)">&#10094;</button>
+          <div class="slider-track" id="slider-m3">
+            <div class="slide"><img src="https://images.unsplash.com/photo-1618641986557-1ecd230959aa?auto=format&fit=crop&w=1000&q=80" alt="Img"></div>
+            <div class="slide"><video autoplay loop muted playsinline controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video></div>
+          </div>
+          <button class="slider-btn next" onclick="moveSlide('slider-m3', 1)">&#10095;</button>
+        </div>
       </div>
     </div>
   </div>
+
+  <!-- Script Responsável por Passar pro Lado -->
+  <script>
+    function moveSlide(trackId, direction) {
+      const track = document.getElementById(trackId);
+      // Pega a largura exata de 1 slide na tela no momento
+      const slideWidth = track.clientWidth; 
+      // Rola pro lado com animação suave nativa
+      track.scrollBy({ left: slideWidth * direction, behavior: 'smooth' });
+    }
+  </script>
 
 </body>
 </html>
